@@ -1,0 +1,158 @@
+@if (callbackService.isOpen()) {
+  <div
+    class="modal-overlay"
+    (click)="close()"
+    (keydown.escape)="close()"
+    (keydown.enter)="close()"
+    (keydown.space)="$event.preventDefault(); close()"
+    tabindex="0"
+    role="button"
+    aria-label="Close modal"
+  >
+    <div
+      class="modal-container"
+      (click)="$event.stopPropagation()"
+      (keydown)="$event.stopPropagation()"
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+    >
+      <div class="modal-card">
+        <button class="close-btn" (click)="close()" aria-label="Close">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        @if (submitSuccess()) {
+          <div class="success-state animate-fade-in">
+            <div class="success-icon">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h2>
+              {{ translationService.translations().ui.callbackForm?.successTitle || 'Спасибо!' }}
+            </h2>
+            <p>
+              {{
+                translationService.translations().ui.callbackForm?.successMessage ||
+                  'Мы свяжемся с вами в ближайшее время.'
+              }}
+            </p>
+          </div>
+        } @else {
+          <div class="form-header">
+            <h2>{{ translationService.translations().menu.callback }}</h2>
+            <p>
+              {{
+                translationService.translations().ui.callbackForm?.subtitle ||
+                  'Оставьте заявку, и наш специалист перезвонит вам'
+              }}
+            </p>
+          </div>
+
+          <form [formGroup]="callbackForm" (ngSubmit)="onSubmit()" class="callback-form">
+            <div class="form-group">
+              <label for="name">{{
+                translationService.translations().ui.callbackForm?.name || 'Имя'
+              }}</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                [placeholder]="
+                  translationService.translations().ui.callbackForm?.namePlaceholder || 'Ваше имя'
+                "
+                [class.invalid]="
+                  callbackForm.get('name')?.invalid && callbackForm.get('name')?.touched
+                "
+              />
+              @if (callbackForm.get('name')?.invalid && callbackForm.get('name')?.touched) {
+                <span class="error-text">{{
+                  translationService.translations().ui.callbackForm?.nameError ||
+                    'Пожалуйста, введите имя'
+                }}</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="phone">{{
+                translationService.translations().ui.callbackForm?.phone || 'Телефон'
+              }}</label>
+              <input
+                type="tel"
+                id="phone"
+                formControlName="phone"
+                [placeholder]="
+                  translationService.translations().ui.callbackForm?.phonePlaceholder ||
+                  '+998 (__) ___-__-__'
+                "
+                [class.invalid]="
+                  callbackForm.get('phone')?.invalid && callbackForm.get('phone')?.touched
+                "
+              />
+              @if (callbackForm.get('phone')?.invalid && callbackForm.get('phone')?.touched) {
+                <span class="error-text">{{
+                  translationService.translations().ui.callbackForm?.phoneError ||
+                    'Введите корректный номер телефона'
+                }}</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="message">{{
+                translationService.translations().ui.callbackForm?.message ||
+                  'Сообщение (необязательно)'
+              }}</label>
+              <textarea
+                id="message"
+                formControlName="message"
+                [placeholder]="
+                  translationService.translations().ui.callbackForm?.messagePlaceholder ||
+                  'Чем мы можем вам помочь?'
+                "
+                rows="3"
+              ></textarea>
+            </div>
+
+            @if (submitError()) {
+              <div class="error-alert">
+                {{
+                  translationService.translations().ui.callbackForm?.submitError ||
+                    'Произошла ошибка. Попробуйте еще раз.'
+                }}
+              </div>
+            }
+
+            <button type="submit" class="submit-btn" [disabled]="isSubmitting()">
+              @if (isSubmitting()) {
+                <span class="loader"></span>
+              } @else {
+                {{
+                  translationService.translations().ui.callbackForm?.submit || 'Отправить заявку'
+                }}
+              }
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+}

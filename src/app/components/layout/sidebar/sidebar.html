@@ -1,0 +1,33 @@
+<div class="sidebar-section">
+  <h3 class="sidebar-title">
+    {{ contentService.translationService.translations().sidebar.ourServices }}
+  </h3>
+  <ul class="services-list">
+    @for (service of contentService.services(); track service.id) {
+      <li>
+        <a
+          [routerLink]="['/service', service.id]"
+          routerLinkActive="active-service"
+          class="service-link"
+          (click)="scrollToTop()"
+        >
+          {{ service.title }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>
+
+<div class="sidebar-section trust-section">
+  <h3 class="sidebar-title">
+    {{ contentService.translationService.translations().sidebar.whyTrustUs }}
+  </h3>
+  <ul class="trust-list">
+    @for (item of contentService.trustIndicators(); track $index) {
+      <li class="trust-item">
+        <span class="trust-icon">{{ item.icon }}</span>
+        <span class="trust-text">{{ item.text }}</span>
+      </li>
+    }
+  </ul>
+</div>

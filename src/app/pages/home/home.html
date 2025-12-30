@@ -1,0 +1,320 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text animate-fade-in-up">
+        <span class="hero-badge">{{ translationService.translations().home.hero.badge }}</span>
+        <h1 class="hero-title">
+          {{ translationService.translations().home.hero.title }}
+          <span class="highlight">{{
+            translationService.translations().home.hero.titleHighlight
+          }}</span>
+        </h1>
+        <p class="hero-description">
+          {{ translationService.translations().home.hero.description }}
+        </p>
+        <div class="hero-actions">
+          <a routerLink="/produce" class="btn btn-primary">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+            <span>{{ translationService.translations().home.hero.watchProduction }}</span>
+          </a>
+          <a routerLink="/contact" class="btn btn-outline">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>{{ translationService.translations().home.hero.contactUs }}</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual animate-fade-in-up stagger-2">
+        <div class="visual-card card-glass">
+          <div class="visual-icon">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>{{ translationService.translations().home.hero.qualityTitle }}</h3>
+          <p>{{ translationService.translations().home.hero.qualityDescription }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card animate-scale-in stagger-1">
+        <div class="stat-icon">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="stat-number">5000+</div>
+        <div class="stat-label">{{ translationService.translations().home.stats.clients }}</div>
+      </div>
+
+      <div class="stat-card animate-scale-in stagger-2">
+        <div class="stat-icon">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="stat-number">17</div>
+        <div class="stat-label">{{ translationService.translations().home.stats.experience }}</div>
+      </div>
+
+      <div class="stat-card animate-scale-in stagger-3">
+        <div class="stat-icon">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="stat-number">10000+</div>
+        <div class="stat-label">{{ translationService.translations().home.stats.projects }}</div>
+      </div>
+
+      <div class="stat-card animate-scale-in stagger-4">
+        <div class="stat-icon">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+        </div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">{{ translationService.translations().home.stats.quality }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="section-header">
+      <h2 class="section-title animate-fade-in-up">
+        {{ translationService.translations().home.features.title }}
+      </h2>
+      <p class="section-subtitle animate-fade-in-up stagger-1">
+        {{ translationService.translations().home.features.subtitle }}
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card card animate-fade-in-up stagger-1">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.individual.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.individual.description }}
+        </p>
+      </div>
+
+      <div class="feature-card card animate-fade-in-up stagger-2">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.fast.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.fast.description }}
+        </p>
+      </div>
+
+      <div class="feature-card card animate-fade-in-up stagger-3">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.guarantee.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.guarantee.description }}
+        </p>
+      </div>
+
+      <div class="feature-card card animate-fade-in-up stagger-4">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.pricing.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.pricing.description }}
+        </p>
+      </div>
+
+      <div class="feature-card card animate-fade-in-up stagger-5">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+            ></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.fullCycle.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.fullCycle.description }}
+        </p>
+      </div>
+
+      <div class="feature-card card animate-fade-in-up stagger-6">
+        <div class="feature-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3 class="feature-title">
+          {{ translationService.translations().home.features.experts.title }}
+        </h3>
+        <p class="feature-description">
+          {{ translationService.translations().home.features.experts.description }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content card-glass">
+      <h2 class="cta-title">{{ translationService.translations().home.cta.title }}</h2>
+      <p class="cta-description">
+        {{ translationService.translations().home.cta.description }}
+      </p>
+      <div class="cta-actions">
+        <button (click)="callbackService.open()" class="btn btn-primary">
+          {{ translationService.translations().home.cta.getConsultation }}
+        </button>
+        <a routerLink="/produce" class="btn btn-secondary">
+          {{ translationService.translations().home.cta.viewWorks }}
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

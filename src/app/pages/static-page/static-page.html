@@ -1,0 +1,16 @@
+<div class="static-page-container">
+  @if (currentPage(); as page) {
+    <div>
+      <div class="page-hero">
+        <h1>{{ page.title }}</h1>
+      </div>
+      <div class="page-content" [innerHTML]="page.content"></div>
+    </div>
+  } @else {
+    <div class="error-message">
+      <h2>Страница не найдена</h2>
+      <p>К сожалению, запрошенная страница не существует или находится в разработке.</p>
+      <a routerLink="/" class="back-link">Вернуться на главную</a>
+    </div>
+  }
+</div>

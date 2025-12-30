@@ -1,0 +1,35 @@
+<div class="language-switcher">
+  <button class="lang-button" (click)="toggleDropdown()" [class.open]="isOpen()">
+    <span class="flag">{{ getCurrentLanguage()?.flag }}</span>
+    <span class="lang-code">{{ getCurrentLanguage()?.code?.toUpperCase() }}</span>
+    <svg
+      class="chevron"
+      [class.rotate]="isOpen()"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+    >
+      <path
+        d="M3 4.5L6 7.5L9 4.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <div class="dropdown" [class.show]="isOpen()">
+    @for (lang of languages; track lang.code) {
+      <button
+        class="dropdown-item"
+        [class.active]="translationService.language() === lang.code"
+        (click)="selectLanguage(lang.code)"
+      >
+        <span class="flag">{{ lang.flag }}</span>
+        <span class="lang-name">{{ lang.name }}</span>
+      </button>
+    }
+  </div>
+</div>

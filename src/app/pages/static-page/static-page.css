@@ -1,0 +1,365 @@
+:host {
+  display: block;
+}
+
+.static-page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Page Hero */
+.page-hero {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.page-hero h1 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--spacing-md);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.page-hero h1::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: var(--gradient-accent);
+  margin: var(--spacing-md) auto 0;
+  border-radius: var(--radius-full);
+}
+
+/* Content Styling */
+.page-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+  animation: fadeIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+/* Enhanced Typography */
+::ng-deep .page-content h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--color-text-dark);
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+::ng-deep .page-content h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+}
+
+::ng-deep .page-content h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  color: var(--color-primary);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+::ng-deep .page-content h3::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-secondary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+::ng-deep .page-content p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.8;
+}
+
+::ng-deep .page-content strong {
+  color: var(--color-text-dark);
+  font-weight: 700;
+}
+
+/* Lists as Cards */
+::ng-deep .page-content ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+
+::ng-deep .page-content li {
+  background: var(--color-bg-white);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: all var(--transition-smooth);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+::ng-deep .page-content li::before {
+  content: '';
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::ng-deep .page-content li:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-accent-light);
+}
+
+::ng-deep .page-content li:hover::before {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Ordered Lists */
+::ng-deep .page-content ol {
+  counter-reset: item;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+::ng-deep .page-content ol li {
+  counter-increment: item;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: start;
+  gap: var(--spacing-lg);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+::ng-deep .page-content ol li::before {
+  content: counter(item);
+  width: 64px;
+  height: 64px;
+  background: var(--gradient-primary);
+  color: var(--color-text-white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.75rem;
+  box-shadow: var(--shadow-lg);
+  background-image: none;
+}
+
+::ng-deep .page-content ol li:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+::ng-deep .page-content ol li:hover::before {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Blockquotes */
+::ng-deep .page-content blockquote {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-style: italic;
+  color: var(--color-text-light);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tables */
+::ng-deep .page-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--spacing-xl) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+::ng-deep .page-content th {
+  background: var(--gradient-dark);
+  color: var(--color-text-white);
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+}
+
+::ng-deep .page-content td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-white);
+}
+
+::ng-deep .page-content tr:hover td {
+  background: var(--color-bg-subtle);
+}
+
+/* Links */
+::ng-deep .page-content a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+::ng-deep .page-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transition: width var(--transition-base);
+}
+
+::ng-deep .page-content a:hover {
+  color: var(--color-accent-dark);
+}
+
+::ng-deep .page-content a:hover::after {
+  width: 100%;
+}
+
+/* Error Message */
+.error-message {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+}
+
+.error-message h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.error-message p {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.7;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 1rem 2rem;
+  background: var(--gradient-accent);
+  color: var(--color-text-white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-glow);
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-hero {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .page-content {
+    font-size: 1rem;
+  }
+
+  ::ng-deep .page-content h2 {
+    padding-left: var(--spacing-sm);
+  }
+
+  ::ng-deep .page-content li {
+    flex-direction: column;
+  }
+
+  ::ng-deep .page-content ol li {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  ::ng-deep .page-content ol li::before {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+
+  ::ng-deep .page-content table {
+    font-size: 0.875rem;
+  }
+
+  ::ng-deep .page-content th,
+  ::ng-deep .page-content td {
+    padding: var(--spacing-sm);
+  }
+}

@@ -49,5 +49,7 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "compress": true
 }

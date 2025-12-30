@@ -1,8 +1,10 @@
 :host {
   display: block;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: var(--z-sticky);
+  left: 0;
+  width: 100%;
+  z-index: var(--z-fixed);
 }
 
 .header-wrapper {

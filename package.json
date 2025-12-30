@@ -14,7 +14,9 @@
     "quality:check": "npm run lint && npm run format:check",
     "deploy": "vercel --prod",
     "deploy:preview": "vercel",
-    "serve:ssr:metal-yasash": "node dist/metal-yasash/server/server.mjs"
+    "dev:ssr": "ng serve",
+    "serve:ssr": "node dist/metal-yasash/server/server.mjs",
+    "build:ssr": "npm run build && npm run serve:ssr"
   },
   "prettier": {
     "printWidth": 100,

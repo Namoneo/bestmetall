@@ -216,7 +216,7 @@ export const TRANSLATIONS_RU: Translation = {
       title: 'Наши координаты',
       content: `
         <div class="contact-details">
-          <h3>ООО "Metal Art"</h3>
+          <h3>ООО "Best metall"</h3>
           <p><strong>Адрес производства и офиса:</strong></p>
           <p>160100, г. Наманган, ул. Промышленная, д. 45</p>
 
@@ -344,7 +344,7 @@ export const TRANSLATIONS_RU: Translation = {
       address: 'Наманган, ул. Промышленная, д. 45',
       workingHours: 'Пн-Пт: 9:00 - 18:00',
     },
-    copyright: '© 2025 Metal Art. Все права защищены.',
+    copyright: '© 2025 Best metall. Все права защищены.',
     legal: {
       privacy: 'Политика конфиденциальности',
       terms: 'Условия использования',

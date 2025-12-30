@@ -16,8 +16,8 @@
     "deploy": "vercel --prod",
     "deploy:preview": "vercel",
     "dev:ssr": "ng serve",
-    "serve:ssr": "node dist/metal-yasash/server/server.mjs",
-    "build:ssr": "npm run build && npm run serve:ssr"
+    "build:ssr": "npm run build && npm run serve:ssr",
+    "prepare": "husky"
   },
   "prettier": {
     "printWidth": 100,
@@ -63,7 +63,9 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.51.0",

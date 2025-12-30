@@ -5,7 +5,7 @@
     'sidebar content'
     'footer footer';
   grid-template-columns: 320px 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 120px 1fr auto;
   min-height: 100vh;
   max-width: 1600px;
   margin: 0 auto;
@@ -40,6 +40,7 @@
       'header'
       'content'
       'footer';
+    grid-template-rows: 110px 1fr auto;
   }
 
   .layout-sidebar {
@@ -50,3 +51,10 @@
     padding: var(--spacing-md);
   }
 }
+
+@media (max-width: 640px) {
+  .layout-container {
+    grid-template-rows: 90px 1fr auto;
+  }
+}
+

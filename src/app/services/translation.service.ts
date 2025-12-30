@@ -1,4 +1,5 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { TRANSLATIONS_RU } from './translations.ru';
 import { TRANSLATIONS_UZ } from './translations.uz';
 
@@ -144,20 +145,30 @@ export class TranslationService {
     return this.currentLanguage() === 'ru' ? TRANSLATIONS_RU : TRANSLATIONS_UZ;
   });
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor() {
-    // Save initial language to localStorage if not set
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      this.saveLanguage(this.currentLanguage());
+    // Save initial language to localStorage if not set - ONLY IN BROWSER
+    if (isPlatformBrowser(this.platformId)) {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        this.saveLanguage(this.currentLanguage());
+      }
     }
   }
 
   private getInitialLanguage(): Language {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved === 'uz' || saved === 'ru' ? saved : 'ru';
+    // Check if running in browser context first
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved === 'uz' || saved === 'ru' ? saved : 'ru';
+    }
+    return 'ru';
   }
 
   private saveLanguage(lang: Language): void {
-    localStorage.setItem(STORAGE_KEY, lang);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(STORAGE_KEY, lang);
+    }
   }
 
   public setLanguage(lang: Language): void {

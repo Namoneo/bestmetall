@@ -216,7 +216,7 @@ export const TRANSLATIONS_UZ: Translation = {
       title: 'Bizning manzilimiz',
       content: `
         <div class="contact-details">
-          <h3>OOO "Metal Art"</h3>
+          <h3>OOO "Best metall"</h3>
           <p><strong>Ishlab chiqarish va ofis manzili:</strong></p>
           <p>160100, Namangan sh., Sanoat ko'chasi, 45-uy</p>
 
@@ -345,7 +345,7 @@ export const TRANSLATIONS_UZ: Translation = {
       address: "Namangan, Sanoat ko'chasi, 45-uy",
       workingHours: 'Dush-Jum: 9:00 - 18:00',
     },
-    copyright: '© 2025 Metal Art. Barcha huquqlar himoyalangan.',
+    copyright: '© 2025 Best metall. Barcha huquqlar himoyalangan.',
     legal: {
       privacy: 'Maxfiylik siyosati',
       terms: 'Foydalanish shartlari',

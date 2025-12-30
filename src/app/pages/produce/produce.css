@@ -154,6 +154,7 @@
   overflow: hidden;
   transition: all var(--transition-smooth);
   cursor: pointer;
+  position: relative;
 }
 
 .gallery-item:hover {

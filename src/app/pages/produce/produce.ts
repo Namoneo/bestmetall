@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CallbackService } from '../../services/callback.service';
@@ -6,7 +7,7 @@ import { ContentService, ServiceItem } from '../../services/content';
 @Component({
   selector: 'app-produce',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './produce.html',
   styleUrl: './produce.css',
 })

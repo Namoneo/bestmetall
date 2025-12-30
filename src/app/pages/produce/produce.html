@@ -111,7 +111,7 @@
             [style.animation-delay]="$index * 0.1 + 's'"
             (click)="openLightbox(img)"
           >
-            <img [src]="img" [alt]="service.title" class="gallery-image" />
+            <img [ngSrc]="img" [alt]="service.title" class="gallery-image" fill />
             <div class="image-overlay">
               <span class="view-btn">Увеличить</span>
             </div>

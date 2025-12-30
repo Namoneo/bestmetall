@@ -154,7 +154,12 @@
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <img [src]="selectedImage()" alt="Full view" class="lightbox-image" (click)="$event.stopPropagation()" />
+        <img
+          [src]="selectedImage()"
+          alt="Full view"
+          class="lightbox-image"
+          (click)="$event.stopPropagation()"
+        />
       </div>
     }
 

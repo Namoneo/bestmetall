@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './components/layout/main-layout/main-layout';
+import { Home } from './pages/home/home';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+        component: Home,
       },
       {
         path: 'produce',

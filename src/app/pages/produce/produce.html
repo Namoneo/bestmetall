@@ -99,48 +99,66 @@
     </div>
 
     <!-- Gallery Section -->
-    <section class="gallery-section animate-fade-in-up stagger-4">
-      <div class="section-header">
-        <h2 class="section-title">Галерея работ</h2>
-        <p class="section-subtitle">Примеры наших проектов: {{ service.title }}</p>
-      </div>
-      <div class="gallery-grid">
-        @for (img of getGalleryImages(); track $index) {
-          <div
-            class="gallery-item card-glass animate-fade-in"
-            [style.animation-delay]="$index * 0.1 + 's'"
-            (click)="openLightbox(img)"
-          >
-            <img [ngSrc]="img" [alt]="service.title" class="gallery-image" fill />
-            <div class="image-overlay">
-              <span class="view-btn">Увеличить</span>
+    @defer (on viewport) {
+      <section class="gallery-section animate-fade-in-up stagger-4">
+        <div class="section-header">
+          <h2 class="section-title">Галерея работ</h2>
+          <p class="section-subtitle">Примеры наших проектов: {{ service.title }}</p>
+        </div>
+        <div class="gallery-grid">
+          @for (img of getGalleryImages(); track $index) {
+            <div
+              class="gallery-item card-glass animate-fade-in"
+              [style.animation-delay]="$index * 0.1 + 's'"
+              (click)="openLightbox(img)"
+              (keydown.enter)="openLightbox(img)"
+              (keydown.space)="openLightbox(img)"
+              tabindex="0"
+              role="button"
+              [attr.aria-label]="'Открыть изображение ' + ($index + 1)"
+            >
+              <img [ngSrc]="img" [alt]="service.title" class="gallery-image" fill />
+              <div class="image-overlay">
+                <span class="view-btn">Увеличить</span>
+              </div>
             </div>
-          </div>
-        } @empty {
-          <div class="gallery-item card-glass">
-            <div class="gallery-placeholder">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-              <p>Фото скоро появятся</p>
+          } @empty {
+            <div class="gallery-item card-glass">
+              <div class="gallery-placeholder">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <p>Фото скоро появятся</p>
+              </div>
             </div>
-          </div>
-        }
-      </div>
-    </section>
+          }
+        </div>
+      </section>
+    } @placeholder {
+      <div style="min-height: 300px"></div>
+    }
 
     <!-- Lightbox Modal -->
     @if (selectedImage()) {
-      <div class="lightbox-overlay" (click)="closeLightbox()">
+      <div
+        class="lightbox-overlay"
+        (click)="closeLightbox()"
+        (keydown.escape)="closeLightbox()"
+        (keydown.enter)="closeLightbox()"
+        (keydown.space)="closeLightbox()"
+        tabindex="0"
+        role="button"
+        aria-label="Close lightbox"
+      >
         <button class="close-btn" (click)="closeLightbox()">
           <svg
             width="24"
@@ -159,19 +177,27 @@
           alt="Full view"
           class="lightbox-image"
           (click)="$event.stopPropagation()"
+          (keydown)="$event.stopPropagation()"
+          tabindex="-1"
         />
       </div>
     }
 
     <!-- CTA Section -->
-    <section class="cta-section card-glass animate-fade-in-up stagger-5">
-      <h3 class="cta-title">Заинтересовались этой услугой?</h3>
-      <p class="cta-description">Свяжитесь с нами для получения консультации и расчета стоимости</p>
-      <div class="cta-actions">
-        <button (click)="callbackService.open()" class="btn btn-primary">Связаться с нами</button>
-        <a routerLink="/" class="btn btn-outline">Вернуться на главную</a>
-      </div>
-    </section>
+    @defer (on viewport) {
+      <section class="cta-section card-glass animate-fade-in-up stagger-5">
+        <h3 class="cta-title">Заинтересовались этой услугой?</h3>
+        <p class="cta-description">
+          Свяжитесь с нами для получения консультации и расчета стоимости
+        </p>
+        <div class="cta-actions">
+          <button (click)="callbackService.open()" class="btn btn-primary">Связаться с нами</button>
+          <a routerLink="/" class="btn btn-outline">Вернуться на главную</a>
+        </div>
+      </section>
+    } @placeholder {
+      <div style="min-height: 200px"></div>
+    }
   </div>
 } @else {
   <!-- Error State -->

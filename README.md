@@ -2,6 +2,23 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
 
+## Deployment
+
+This site is deployed on Firebase Hosting.
+
+**Live URL:** https://bestmetall.web.app
+
+### Manual Deploy
+
+```bash
+npm run build
+firebase deploy --project bestmetall --only hosting
+```
+
+### Auto-deploy via GitHub Actions
+
+Pushes to `main` branch automatically deploy via GitHub Actions.
+
 ## Development server
 
 To start a local development server, run:
@@ -17,7 +34,7 @@ Once the server is running, open your browser and navigate to `http://localhost:
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-ng generate component component-name
+g generate component component-name
 ```
 
 For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
@@ -57,3 +74,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+---
+
+**Migration to Firebase completed by:** Zyph 🦊

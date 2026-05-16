@@ -1,0 +1,556 @@
+/* ============================================
+   BEST METALL - ANIMATION STYLES
+   GSAP Animations & Keyframe Effects
+   ============================================ */
+
+/* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal--left {
+  transform: translateX(-40px);
+}
+
+.reveal--right {
+  transform: translateX(40px);
+}
+
+.reveal--scale {
+  transform: scale(0.95);
+}
+
+/* Split text animation container */
+.split-text .char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.split-text .word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.split-text .word-inner {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* Line reveal for section titles */
+.line-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.line-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-fire);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slower);
+}
+
+.line-reveal.revealed::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   PARALLAX EFFECTS
+   ============================================ */
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  will-change: transform;
+}
+
+.parallax-layer--back {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-layer--deep {
+  transform: translateZ(-2px) scale(3);
+}
+
+/* Mouse parallax for hero */
+.mouse-parallax {
+  transition: transform var(--transition-fast);
+  will-change: transform;
+}
+
+/* ============================================
+   SCROLL-TRIGGERED STAGGER
+   ============================================ */
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+/* Stagger delays */
+.stagger-item[data-stagger="1"] { transition-delay: 0ms; }
+.stagger-item[data-stagger="2"] { transition-delay: 100ms; }
+.stagger-item[data-stagger="3"] { transition-delay: 200ms; }
+.stagger-item[data-stagger="4"] { transition-delay: 300ms; }
+.stagger-item[data-stagger="5"] { transition-delay: 400ms; }
+.stagger-item[data-stagger="6"] { transition-delay: 500ms; }
+
+/* ============================================
+   COUNTER ANIMATION
+   ============================================ */
+
+.counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter__prefix,
+.counter__suffix {
+  display: inline-block;
+}
+
+.counter__value {
+  display: inline-block;
+  min-width: 2ch;
+}
+
+/* Blueprint animation for metrics */
+.blueprint-pulse {
+  animation: blueprintPulse 2s ease-in-out infinite;
+}
+
+@keyframes blueprintPulse {
+  0%, 100% {
+    opacity: 0.1;
+    stroke-width: 1;
+  }
+  50% {
+    opacity: 0.3;
+    stroke-width: 2;
+  }
+}
+
+/* ============================================
+   METALLIC REFLECTION
+   ============================================ */
+
+.metallic-reflection {
+  position: relative;
+  overflow: hidden;
+}
+
+.metallic-reflection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 70%
+  );
+  animation: metallicShine 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes metallicShine {
+  0%, 100% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* ============================================
+   IMAGE REVEAL
+   ============================================ */
+
+.image-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-reveal__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-fire);
+  transform-origin: right;
+  z-index: 2;
+}
+
+.image-reveal__img {
+  transform: scale(1.2);
+  transition: transform var(--transition-slower);
+}
+
+.image-reveal.revealed .image-reveal__img {
+  transform: scale(1);
+}
+
+/* ============================================
+   HORIZONTAL SCROLL SECTION
+   ============================================ */
+
+.horizontal-scroll {
+  position: relative;
+}
+
+.horizontal-scroll__track {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.horizontal-scroll__item {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Process progress indicator */
+.progress-indicator {
+  position: fixed;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-sm);
+  z-index: 100;
+}
+
+.progress-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--steel-dark);
+  transition: background-color var(--transition-base), transform var(--transition-base);
+}
+
+.progress-indicator__dot--active {
+  background-color: var(--accent-fire);
+  transform: scale(1.5);
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-base);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 107, 44, 0.3);
+}
+
+.hover-scale {
+  transition: transform var(--transition-slow);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* ============================================
+   BUTTON SHINE EFFECT
+   ============================================ */
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform var(--transition-slow);
+}
+
+.btn-shine:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* ============================================
+   SECTION TRANSITIONS
+   ============================================ */
+
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--bg-primary), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   NAVBAR SCROLL EFFECTS
+   ============================================ */
+
+.nav-scroll-effect {
+  transition: background-color var(--transition-base), backdrop-filter var(--transition-base), padding var(--transition-base);
+}
+
+.nav-scroll-effect--scrolled {
+  background-color: rgba(10, 11, 13, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+}
+
+/* ============================================
+   LOADING ANIMATION
+   ============================================ */
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader__spinner {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--steel-dark);
+  border-top-color: var(--accent-fire);
+  border-radius: 50%;
+  animation: loaderSpin 1s linear infinite;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader__text {
+  position: absolute;
+  bottom: calc(50% - 80px);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   FLIP CARD EFFECT
+   ============================================ */
+
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition-slow);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card__front,
+.flip-card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card__back {
+  transform: rotateY(180deg);
+}
+
+/* ============================================
+   MAGNETIC EFFECT TARGETS
+   ============================================ */
+
+[data-magnetic] {
+  transition: transform var(--transition-fast);
+}
+
+/* ============================================
+   MARQUEE ANIMATION
+   ============================================ */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee__content {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee__content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================
+   SVG DRAW ANIMATIONS
+   ============================================ */
+
+.draw-svg path,
+.draw-svg line,
+.draw-svg circle,
+.draw-svg rect {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-in-out forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ============================================
+   PULSE ANIMATION
+   ============================================ */
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================
+   FLOAT ANIMATION
+   ============================================ */
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .stagger-item {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .mouse-parallax,
+  .parallax-layer {
+    transform: none !important;
+  }
+  
+  .metallic-reflection::before,
+  .marquee__content,
+  .float,
+  .pulse,
+  .blueprint-pulse {
+    animation: none;
+  }
+  
+  .loader__spinner {
+    animation: none;
+    border-top-color: var(--steel-dark);
+  }
+}

@@ -1,0 +1,103 @@
+/* ============================================
+   BEST METALL - CSS VARIABLES
+   "Forged Precision" Design System
+   ============================================ */
+
+:root {
+  /* Background Colors */
+  --bg-primary: #0A0B0D;
+  --bg-secondary: #111317;
+  --bg-elevated: #171A1F;
+  
+  /* Steel Palette */
+  --steel-dark: #2A2F36;
+  --steel: #59616B;
+  --steel-light: #AAB3BE;
+  --chrome: #D8DEE5;
+  
+  /* Accent Colors - Fire & Gold */
+  --accent-fire: #FF6B2C;
+  --accent-hot: #FF8A3D;
+  --accent-gold: #D9A441;
+  
+  /* Text Colors */
+  --text-primary: #F5F7FA;
+  --text-secondary: #9AA3AE;
+  --text-muted: #69717C;
+  
+  /* Typography */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.65vw, 1.375rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(3rem, 2rem + 5vw, 6rem);
+  --text-4xl: clamp(4rem, 3rem + 5vw, 8rem);
+  --text-hero: clamp(5rem, 4rem + 8vw, 12rem);
+  
+  /* Spacing */
+  --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+  --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+  --space-3xl: clamp(4rem, 3rem + 5vw, 8rem);
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(255, 107, 44, 0.3);
+  --shadow-glow-lg: 0 0 60px rgba(255, 107, 44, 0.4);
+  
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  
+  /* Z-index Scale */
+  --z-background: -10;
+  --z-base: 0;
+  --z-content: 10;
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-cursor: 9999;
+}
+
+/* ============================================
+   HIGH CONTRAST MODE SUPPORT
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --text-secondary: #B8C0CC;
+    --text-muted: #889099;
+    --steel-light: #C5CCD6;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0.01ms;
+    --transition-base: 0.01ms;
+    --transition-slow: 0.01ms;
+    --transition-slower: 0.01ms;
+  }
+}

@@ -12,13 +12,7 @@ const lenis = new Lenis({
   touchMultiplier: 2,
 });
 
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// GSAP ScrollTrigger integration with Lenis
+// GSAP ScrollTrigger integration with Lenis (single ticker, no manual raf loop)
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => {
   lenis.raf(time * 1000);
@@ -28,13 +22,13 @@ gsap.ticker.lagSmoothing(0);
 // Language Management
 const LanguageManager = {
   currentLang: localStorage.getItem('bestmetall-lang') || 'ru',
-  
+
   init() {
     this.applyLanguage(this.currentLang);
     this.setupToggle();
     this.updateToggleUI();
   },
-  
+
   setupToggle() {
     const toggle = document.getElementById('langToggle');
     if (toggle) {
@@ -46,7 +40,7 @@ const LanguageManager = {
       });
     }
   },
-  
+
   updateToggleUI() {
     const toggle = document.getElementById('langToggle');
     if (toggle) {
@@ -58,11 +52,11 @@ const LanguageManager = {
       }
     }
   },
-  
+
   applyLanguage(lang) {
     document.documentElement.lang = lang;
     const elements = document.querySelectorAll('[data-i18n]');
-    
+
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
       const translation = this.getTranslation(lang, key);
@@ -74,13 +68,8 @@ const LanguageManager = {
         }
       }
     });
-    
-    // Re-trigger text animations if needed
-    if (window.splitTextAnimations) {
-      window.splitTextAnimations.refresh();
-    }
   },
-  
+
   getTranslation(lang, key) {
     const keys = key.split('.');
     let value = translations[lang];
@@ -97,7 +86,7 @@ const MobileNav = {
     const toggle = document.getElementById('navToggle');
     const menu = document.getElementById('navMenu');
     const nav = document.getElementById('nav');
-    
+
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         toggle.classList.toggle('active');
@@ -105,7 +94,7 @@ const MobileNav = {
         nav.classList.toggle('nav--open');
         document.body.classList.toggle('nav-open');
       });
-      
+
       // Close on link click
       const links = menu.querySelectorAll('a');
       links.forEach(link => {
@@ -125,7 +114,7 @@ const Navigation = {
   init() {
     const nav = document.getElementById('nav');
     let lastScroll = 0;
-    
+
     lenis.on('scroll', ({ scroll }) => {
       // Add solid background after scrolling
       if (scroll > 100) {
@@ -133,17 +122,17 @@ const Navigation = {
       } else {
         nav.classList.remove('nav--scrolled');
       }
-      
+
       // Hide/show on scroll direction
       if (scroll > lastScroll && scroll > 500) {
         nav.classList.add('nav--hidden');
       } else {
         nav.classList.remove('nav--hidden');
       }
-      
+
       lastScroll = scroll;
     });
-    
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', (e) => {
@@ -161,12 +150,12 @@ const Navigation = {
 const CounterAnimation = {
   init() {
     const counters = document.querySelectorAll('[data-count]');
-    
+
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute('data-count'));
       const suffix = counter.getAttribute('data-suffix') || '';
       const duration = 2000;
-      
+
       ScrollTrigger.create({
         trigger: counter,
         start: 'top 80%',
@@ -194,26 +183,22 @@ const FormHandler = {
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
+
         // Simple validation
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
-        
+
         if (!name || !phone) {
           this.showMessage('Пожалуйста, заполните все обязательные поля', 'error');
           return;
         }
-        
+
         // Simulate form submission
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
-        
+
         setTimeout(() => {
           this.showMessage('Спасибо! Мы свяжемся с вами в ближайшее время.', 'success');
           form.reset();
@@ -223,26 +208,26 @@ const FormHandler = {
       });
     }
   },
-  
+
   showMessage(text, type) {
     // Remove existing messages
     const existing = document.querySelector('.form-message');
     if (existing) existing.remove();
-    
+
     // Create message
     const message = document.createElement('div');
     message.className = `form-message form-message--${type}`;
     message.textContent = text;
-    
+
     const form = document.getElementById('contactForm');
     form.appendChild(message);
-    
+
     // Animate in
-    gsap.fromTo(message, 
+    gsap.fromTo(message,
       { opacity: 0, y: -10 },
       { opacity: 1, y: 0, duration: 0.3 }
     );
-    
+
     // Remove after delay
     setTimeout(() => {
       gsap.to(message, {
@@ -260,23 +245,23 @@ const SparkEffect = {
   init() {
     const container = document.getElementById('sparks');
     if (!container) return;
-    
+
     const createSpark = () => {
       const spark = document.createElement('div');
       spark.className = 'spark';
-      
+
       // Random position
       const x = Math.random() * 100;
       const y = Math.random() * 100;
-      
+
       spark.style.left = `${x}%`;
       spark.style.top = `${y}%`;
-      
+
       container.appendChild(spark);
-      
+
       // Animate
       gsap.fromTo(spark,
-        { 
+        {
           opacity: 0,
           scale: 0,
           x: 0,
@@ -293,7 +278,7 @@ const SparkEffect = {
         }
       );
     };
-    
+
     // Create sparks periodically
     setInterval(createSpark, 300);
   }
@@ -307,16 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
   CounterAnimation.init();
   FormHandler.init();
   SparkEffect.init();
-  
-  // Initialize cursor (if not touch device)
-  if (!window.matchMedia('(pointer: coarse)').matches) {
-    Cursor.init();
-  }
-  
+
   // Initialize animations
   if (window.Animations) {
     window.Animations.init();
   }
-  
-  console.log('🦊 Best Metall - Forged Precision');
+
+  console.log('Best Metall - Forged Precision');
 });

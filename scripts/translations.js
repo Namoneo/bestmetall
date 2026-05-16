@@ -13,7 +13,7 @@ const translations = {
       projects: 'Проекты',
       contact: 'Контакты'
     },
-    
+
     // Hero Section
     hero: {
       label: 'Металлоконструкции с 2008 года',
@@ -34,12 +34,13 @@ const translations = {
         quality: 'Качество'
       }
     },
-    
+
     // About Section
     about: {
       label: 'О компании',
       title: 'Лидер металлообработки в Намангане',
       text: 'ООО "Best Metall" — ведущая компания по производству металлоконструкций в Узбекистане. С 2008 года мы создаём надёжные решения для промышленности, строительства и частных клиентов.',
+      expText: 'лет опыта',
       features: {
         experience: {
           title: '17+ лет опыта',
@@ -59,7 +60,7 @@ const translations = {
         }
       }
     },
-    
+
     // Services Section
     services: {
       label: 'Услуги',
@@ -99,7 +100,7 @@ const translations = {
       },
       link: 'Подробнее'
     },
-    
+
     // Process Section
     process: {
       label: 'Процесс',
@@ -132,7 +133,7 @@ const translations = {
         }
       }
     },
-    
+
     // Projects Section
     projects: {
       label: 'Проекты',
@@ -160,15 +161,17 @@ const translations = {
         }
       }
     },
-    
+
     // Metrics Section
     metrics: {
       clients: 'Довольных клиентов',
       years: 'Лет на рынке',
       projects: 'Выполненных проектов',
-      guarantee: 'Гарантия качества'
+      guarantee: 'Гарантия качества',
+      support: 'Поддержка',
+      precision: 'Точность'
     },
-    
+
     // CTA Section
     cta: {
       title: 'Давайте создадим что-то надёжное',
@@ -176,7 +179,20 @@ const translations = {
       primary: 'Начать проект',
       secondary: 'Позвонить'
     },
-    
+
+    // Contact Section
+    contact: {
+      label: 'Контакты',
+      title: 'Давайте работать вместе',
+      text: 'Оставьте заявку или свяжитесь с нами напрямую. Мы ответим в течение 24 часов.',
+      form: {
+        name: 'Ваше имя',
+        phone: 'Телефон',
+        message: 'Сообщение',
+        submit: 'Отправить заявку'
+      }
+    },
+
     // Footer
     footer: {
       tagline: 'Премиальные металлоконструкции с 2008 года',
@@ -187,10 +203,11 @@ const translations = {
       },
       address: 'г. Наманган, промзона Сергели',
       copyright: '© 2025 ООО "Best Metall". Все права защищены.',
+      rights: 'Все права защищены.',
       credits: 'Сделано с огнём и сталью'
     }
   },
-  
+
   en: {
     // Navigation
     nav: {
@@ -200,7 +217,7 @@ const translations = {
       projects: 'Projects',
       contact: 'Contact'
     },
-    
+
     // Hero Section
     hero: {
       label: 'Metal Construction Since 2008',
@@ -221,12 +238,13 @@ const translations = {
         quality: 'Quality'
       }
     },
-    
+
     // About Section
     about: {
       label: 'About Us',
       title: 'Leading Metal Fabrication in Namangan',
       text: 'LLC "Best Metall" is a leading metal construction company in Uzbekistan. Since 2008, we have been creating reliable solutions for industry, construction and private clients.',
+      expText: 'years of experience',
       features: {
         experience: {
           title: '17+ Years Experience',
@@ -246,7 +264,7 @@ const translations = {
         }
       }
     },
-    
+
     // Services Section
     services: {
       label: 'Services',
@@ -286,7 +304,7 @@ const translations = {
       },
       link: 'Learn More'
     },
-    
+
     // Process Section
     process: {
       label: 'Process',
@@ -319,7 +337,7 @@ const translations = {
         }
       }
     },
-    
+
     // Projects Section
     projects: {
       label: 'Projects',
@@ -347,15 +365,17 @@ const translations = {
         }
       }
     },
-    
+
     // Metrics Section
     metrics: {
       clients: 'Happy Clients',
       years: 'Years on Market',
       projects: 'Completed Projects',
-      guarantee: 'Quality Guarantee'
+      guarantee: 'Quality Guarantee',
+      support: 'Support',
+      precision: 'Precision'
     },
-    
+
     // CTA Section
     cta: {
       title: "Let's Build Something That Lasts",
@@ -363,7 +383,20 @@ const translations = {
       primary: 'Start Project',
       secondary: 'Call Us'
     },
-    
+
+    // Contact Section
+    contact: {
+      label: 'Contact',
+      title: "Let's Work Together",
+      text: 'Leave a request or contact us directly. We will respond within 24 hours.',
+      form: {
+        name: 'Your Name',
+        phone: 'Phone',
+        message: 'Message',
+        submit: 'Send Request'
+      }
+    },
+
     // Footer
     footer: {
       tagline: 'Premium metal structures since 2008',
@@ -374,6 +407,7 @@ const translations = {
       },
       address: 'Namangan, Sergeli Industrial Zone',
       copyright: '© 2025 LLC "Best Metall". All rights reserved.',
+      rights: 'All rights reserved.',
       credits: 'Made with fire and steel'
     }
   }

@@ -61,18 +61,20 @@ export const TRANSLATIONS_UZ: Translation = {
       ],
     },
     mailboxes: {
-      title: 'Metall pochta qutilari',
+      title: 'Metall pochta qutilari va maxsus buyumlar',
       description: `
-        Elita biznes-markazlar va turar-joy xollari uchun zanglamaydigan po'latdan seksiyali pochta qutilarini loyihalash va ishlab chiqarish.
-        Biz "Belaya Dacha" seriyasi kabi noyob patentlangan ultra yupqa modellarni (chuqurligi 40mm) taklif qilamiz.
-        Qutilar vandalizmga chidamli, xizmat ko'rsatish uchun qulay va shisha yoki plastik qo'shimchalar bilan bezatilishi mumkin.
+        "Sam Moy" avtomashina yuvish shaxobchalariga zanglamaydigan po'latdan va metall kukunli kraska qoplamali boshqaruv shit (quti)lari tayyor dizayn ko'rinishdagi va sizning talabingizga mos ravishda ishlab chiqarib berish.
+        Pochta qutulari va turli xil ko'rinishdagi qutilar, "Elektroshit"lar va kiyim alishtirish shkaflari mavjud bo'lib, ular siz xohlagan individual buyurtmangizga ham moslashtirish va ishlab chiqarib berish.
       `,
       features: [
-        'Seksiyali bloklar',
+        'Sam Moy avtoyuvish uchun boshqaruv shitlari',
+        'Pochta qutilari (seksiyali bloklar)',
+        'Elektroshit va panellar',
+        'Kiyim alishtirish shkaflari',
         'Vandalizmga chidamli bajarilish',
-        'Atigi 40mm chuqurlik',
+        'Individual dizayn va o"lchamlar',
         "Raqamlarni lazer o'yish",
-        'Individual fasad dizayni',
+        'Metall kukunli kraska qoplama',
       ],
     },
     loft: {

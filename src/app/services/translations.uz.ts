@@ -36,6 +36,10 @@ export const TRANSLATIONS_UZ: Translation = {
         "Satinirlash (yo'naltirilgan silliqlash)",
         "RAL katalogi bo'yicha kukun bo'yash",
         "Metall konstruksiyalarni chiqib o'rnatish",
+        "Lazer uskunasida aniq ulchamda kesish",
+        '3D loyihalashtirish va uni reallashtirish',
+        'Listlarga ishlov berish',
+        "Listlarni loyiha bo'yicha bukib berish",
       ],
     },
     stairs: {
@@ -141,6 +145,52 @@ export const TRANSLATIONS_UZ: Translation = {
         RAL katalogi bo'yicha metall mahsulotlarni har qanday ranglarda professional kukun bo'yash xizmatlari.
         Uzoq muddatli va barqaror qoplamani ta'minlaymiz.
       `,
+    },
+    stainlessMaterials: {
+      title: "Zanglamaydigan po'lat materiallari",
+      description: `
+        Sifatli zanglamaydigan po'lat materiallarini sotish va yetkazib berish.
+        SUS 304 markali yuqori sifatli listlar, trubalar va profillar.
+        Barcha materiallar xalqaro sifat standartlariga javob beradi.
+      `,
+      features: [
+        "SUS 304 markali zanglamaydigan po'lat listlar",
+        "SUS 304 markali truba va profillar",
+        'Turli xil aksessuarlar va komplektuyshlar',
+        'Yuqori sifat kafolati',
+        'Tez yetkazib berish',
+      ],
+    },
+    restaurantEquipment: {
+      title: "Oshxona-restoran va kafelar uchun uskunalar",
+      description: `
+        Oshxonalar, restoranlar va kafelar uchun professional zanglamaydigan po'latdan yasalgan uskunalar.
+        Yuqori gigiena standartlariga javob beradigan sifatli mahsulotlar.
+        Individual loyiha bo'yicha ishlab chiqarish.
+      `,
+      features: [
+        'Stol va stellajlar',
+        'Idish yuvish qozonlari',
+        'Zont va tutun tortkichlar',
+        'Xalodilnik va marmar',
+        'Ovqat tarqatish stansiyalari',
+        'Individual shkaf va qurilmalar',
+      ],
+    },
+    laserCutting: {
+      title: 'Lazer kesish xizmatlari',
+      description: `
+        Zamonaviy lazer uskunalari yordamida aniq ulchamda metall kesish.
+        3D loyihalashtirish va uni reallashtirish.
+        Murakkab geometrik shakllarni aniq kesish.
+      `,
+      features: [
+        'Lazer uskunasida aniq ulchamda kesish',
+        '3D loyihalashtirish va reallashtirish',
+        'Listlarga ishlov berish',
+        'Listlarni loyiha bo‘yicha bukib berish',
+        'Figurali nashrlar',
+      ],
     },
   },
   pages: {

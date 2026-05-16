@@ -1,80 +1,126 @@
-# MetalYasash
+# Best Metall - One Page Website
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+Современный одностраничный сайт для компании Best Metall (MetalYasash) - производство изделий из нержавеющей стали и металла.
 
-## Deployment
+## О проекте
 
-This site is deployed on Firebase Hosting.
+Этот проект представляет собой полностью переработанный одностраничный сайт, заменяющий оригинальное Angular-приложение. Сайт создан с использованием чистого HTML, CSS и JavaScript без фреймворков.
 
-**Live URL:** https://bestmetall.web.app
+### Особенности
 
-### Manual Deploy
+- ✅ Полностью отзывчивый дизайн (mobile-first)
+- ✅ Современный glassmorphism UI
+- ✅ Плавные анимации при скролле
+- ✅ Оптимизированная производительность
+- ✅ SEO-оптимизированная структура
+- ✅ Доступность (ARIA метки, семантический HTML)
+- ✅ Нет зависимостей - чистый HTML/CSS/JS
 
-```bash
-npm run build
-firebase deploy --project bestmetall --only hosting
+## Структура проекта
+
+```
+bestmetall-redesign/
+├── index.html              # Главный файл
+├── css/
+│   ├── variables.css       # CSS переменные (цвета, шрифты)
+│   ├── reset.css           # CSS reset
+│   ├── base.css            # Базовые стили
+│   ├── components.css      # Компоненты (кнопки, карточки)
+│   ├── sections.css        # Стили секций
+│   ├── animations.css      # Анимации
+│   └── responsive.css      # Адаптивные стили
+├── js/
+│   └── main.js             # Основной JavaScript
+├── assets/
+│   ├── images/             # Изображения
+│   └── fonts/              # Шрифты (если локальные)
+└── README.md
 ```
 
-### Auto-deploy via GitHub Actions
+## Секции сайта
 
-Pushes to `main` branch automatically deploy via GitHub Actions.
+1. **Header** - Навигация с sticky эффектом
+2. **Hero** - Главный экран с призывом к действию
+3. **Stats** - Статистика компании (с анимированными счетчиками)
+4. **About** - О компании
+5. **Services** - 12 услуг в виде карточек
+6. **Why Us** - 6 преимуществ работы с нами
+7. **Production** - Оборудование и виды работ
+8. **Process** - Этапы работы (таймлайн)
+9. **Delivery** - Условия доставки и оплаты
+10. **Contact** - Контакты и форма обратной связи
+11. **Footer** - Подвал с навигацией
 
-## Development server
+## Технологии
 
-To start a local development server, run:
+- **HTML5** - семантическая разметка
+- **CSS3** - custom properties, flexbox, grid
+- **Vanilla JavaScript** - без библиотек
+- **Google Fonts** - Playfair Display, Inter
+- **SVG Icons** - inline SVG
 
-```bash
-ng serve
-```
+## Цветовая палитра
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Primary Dark: `#0A0E27`
+- Accent Coral: `#FF6B6B`
+- Accent Turquoise: `#4ECDC4`
+- Accent Gold: `#FFE66D`
 
-## Code scaffolding
+## Запуск
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-g generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Просто откройте `index.html` в браузере. Для локального сервера:
 
 ```bash
-ng test
+# Python 3
+python -m http.server 8000
+
+# Node.js
+npx serve .
+
+# PHP
+php -S localhost:8000
 ```
 
-## Running end-to-end tests
+Затем откройте http://localhost:8000
 
-For end-to-end (e2e) testing, run:
+## Разработка
 
-```bash
-ng e2e
-```
+### CSS Архитектура
+- **Variables** - все цвета и размеры в :root
+- **Mobile-first** - базовые стили для мобильных
+- **BEM naming** - .block__element--modifier
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### JavaScript Модули
+- `initNavigation()` - навигация и мобильное меню
+- `initScrollAnimations()` - анимации при скролле
+- `initCounters()` - анимированные счетчики
+- `initForms()` - валидация форм
+- `initModal()` - модальные окна
+- `initSmoothScroll()` - плавная прокрутка
 
-## Additional Resources
+## Браузеры
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
----
+IE11 не поддерживается.
 
-**Migration to Firebase completed by:** Zyph 🦊
+## SEO
+
+- Semantic HTML5
+- Meta tags (title, description, keywords)
+- Open Graph tags
+- Twitter Cards
+- Schema.org structured data ready
+
+## Лицензия
+
+© 2025 Best Metall. Все права защищены.
+
+## Контакты
+
+- Адрес: г. Наманган, ул. Промышленная, д. 45
+- Телефон: +998 (90) 123-45-67
+- Email: info@metal-art.uz

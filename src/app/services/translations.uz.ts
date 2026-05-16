@@ -3,6 +3,9 @@ import { Translation } from './translation.service';
 export const TRANSLATIONS_UZ: Translation = {
   menu: {
     home: 'Bosh sahifa',
+    products: 'Maxsulotlar',
+    services: 'Xizmatlar',
+    equipment: 'Jihozlar',
     delivery: "Yetkazib berish va to'lov",
     howToOrder: 'Qanday buyurtma berish',
     articles: 'Maqolalar',
@@ -14,9 +17,9 @@ export const TRANSLATIONS_UZ: Translation = {
     produce: {
       title: 'Ishlab chiqarish va metall ishlov berish',
       description: `
-        Kompaniyamiz Namangan shahrida Sergeli sanoat zonasida joylashgan o'z ishlab chiqarish uchastkasiga ega.
+        Bizning kompaniyamiz Toshkent, Namangan, Andijon, Farg'ona shaharlarida sanoat zonasida joylashgan o'z ishlab chiqarish uchastkalariga ega.
         Biz 2008 yildan beri ishlaymiz va har qanday murakkablikdagi metall konstruksiyalarni tayyorlash bo'yicha buyurtmalarni qabul qilamiz.
-        Biz Yevropa sifat talablariga javob beradigan zanglamaydigan po'latdan nostandart mahsulotlarga ixtisoslashganmiz.
+        Biz Yevropa sifat talablariga javob beradigan zanglamaydigan po'latdan standart va nostandart mahsulotlarga ixtisoslashganmiz.
       `,
       equipment: [
         "Gilyotina (metall kesish, 6 mm gacha zanglamaydigan po'lat)",
@@ -176,6 +179,13 @@ export const TRANSLATIONS_UZ: Translation = {
         'Ovqat tarqatish stansiyalari',
         'Individual shkaf va qurilmalar',
       ],
+    },
+    carWash: {
+      title: "Avto yuvish uchun uskunalar",
+      description: `
+        Avto yuvish xizmatlari uchun zanglamaydigan po'latdan yasalgan professional uskunalar va qutilar.
+        Uzoq muddatli va mustahkam konstruksiyalar.
+      `,
     },
     laserCutting: {
       title: 'Lazer kesish xizmatlari',

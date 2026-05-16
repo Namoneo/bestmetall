@@ -50,7 +50,7 @@ export const TRANSLATIONS_UZ: Translation = {
       description: `
         Zanglamaydigan po'latdan zinapoya to'siqlari va balyustradalarni professional tayyorlash.
         Bizning mahsulotlarimiz yuqori mustahkamlik, chidamlilik va banklar, restoranlar, ofislar va xususiy uylar uchun ideal bo'lgan zamonaviy estetikaga ega.
-        Biz "Qulay muhit" dasturi uchun maxsus tutqichlarni o'z ichiga olgan eksklyuziv dizayner konstruksiyalarni ham, standart byudjet variantlarini ham taklif qilamiz.
+        Biz zamonaviy va estetik ko'rinishdagi maxsus tutqichlarni o'z ichiga olgan eksklyuziv dizayner konstruksiyalarni ham, standart byudjet variantlarini ham taklif qilamiz.
       `,
       features: [
         "Shisha bilan to'siqlar",

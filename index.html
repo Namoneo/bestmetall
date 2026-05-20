@@ -7,16 +7,16 @@
   <meta name="keywords" content="металлоконструкции, лазерная резка, сварка, Наманган, нержавеющая сталь">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Best Metall - Steel Precision Quality">
+  <meta property="og:title" content="Best Metall — Forged Precision">
   <meta property="og:description" content="Премиальные металлоконструкции для вашего бизнеса и дома">
   <meta property="og:type" content="website">
 
-  <title>Best Metall - Steel Precision Quality</title>
+  <title>Best Metall — Forged Precision</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles/variables.css">
@@ -50,6 +50,19 @@
     <div class="grid-bg__lines"></div>
   </div>
 
+  <!-- Top Tech Bar -->
+  <div class="tech-bar" aria-hidden="false">
+    <div class="tech-bar__inner">
+      <span class="tech-bar__item"><span class="tech-bar__dot"></span><span data-i18n="techbar.est">Основано 2008</span></span>
+      <span class="tech-bar__sep">·</span>
+      <span class="tech-bar__item" data-i18n="techbar.location">Наманган · Узбекистан</span>
+      <span class="tech-bar__sep">·</span>
+      <span class="tech-bar__item" data-i18n="techbar.phone">+998 90 123 45 67</span>
+      <span class="tech-bar__sep">·</span>
+      <span class="tech-bar__item" data-i18n="techbar.hours">Пн – Сб · 09:00 – 18:00</span>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <header class="nav" id="nav">
     <div class="nav__container">
@@ -66,6 +79,7 @@
       <nav class="nav__menu" id="navMenu">
         <a href="#about" class="nav__link" data-i18n="nav.about">О компании</a>
         <a href="#services" class="nav__link" data-i18n="nav.services">Услуги</a>
+        <a href="#equipment" class="nav__link" data-i18n="nav.equipment">Оборудование</a>
         <a href="#process" class="nav__link" data-i18n="nav.process">Процесс</a>
         <a href="#projects" class="nav__link" data-i18n="nav.projects">Проекты</a>
         <a href="#contact" class="nav__link" data-i18n="nav.contact">Контакты</a>
@@ -75,7 +89,7 @@
         <button class="lang-toggle" id="langToggle">
           <span class="lang-toggle__current">RU</span>
           <span class="lang-toggle__separator">/</span>
-          <span class="lang-toggle__other">EN</span>
+          <span class="lang-toggle__other">UZ</span>
         </button>
 
         <a href="#contact" class="btn btn--primary btn--small" data-i18n="hero.cta.primary">Обсудить проект</a>
@@ -95,11 +109,16 @@
         <div class="hero__grid"></div>
         <div class="hero__glow hero__glow--1"></div>
         <div class="hero__glow hero__glow--2"></div>
+        <div class="hero__crosshair"></div>
         <div class="hero__sparks" id="sparks"></div>
       </div>
 
       <div class="hero__content">
-        <div class="hero__label" data-i18n="hero.label">Металлоконструкции с 2008 года</div>
+        <div class="hero__tech-bar">
+          <span class="tech-label">[EST. 2008]</span>
+          <span class="tech-label">[NAMANGAN · UZ]</span>
+          <span class="tech-label">[REF-BMT-001]</span>
+        </div>
 
         <h1 class="hero__title">
           <span class="hero__title-line" data-i18n="hero.title.line1">СТАЛЬ</span>
@@ -107,8 +126,10 @@
           <span class="hero__title-line" data-i18n="hero.title.line3">КАЧЕСТВО</span>
         </h1>
 
+        <div class="weld-line" aria-hidden="true"></div>
+
         <p class="hero__subtitle" data-i18n="hero.subtitle">
-          Премиальные металлоконструкции для вашего бизнеса и дома. Лазерная резка, сварка, порошковая покраска.
+          Премиальные металлоконструкции для бизнеса и дома. Лазерная резка, сварка, порошковая покраска — от чертежа до монтажа.
         </p>
 
         <div class="hero__actions">
@@ -124,20 +145,60 @@
 
       <div class="hero__stats">
         <div class="hero__stat">
+          <span class="tech-label">[01]</span>
           <span class="hero__stat-number" data-count="5000">0</span>
           <span class="hero__stat-label" data-i18n="hero.stats.clients">Клиентов</span>
         </div>
         <div class="hero__stat">
+          <span class="tech-label">[02]</span>
           <span class="hero__stat-number" data-count="17">0</span>
           <span class="hero__stat-label" data-i18n="hero.stats.years">Лет опыта</span>
         </div>
         <div class="hero__stat">
+          <span class="tech-label">[03]</span>
           <span class="hero__stat-number" data-count="10000">0</span>
           <span class="hero__stat-label" data-i18n="hero.stats.projects">Проектов</span>
         </div>
         <div class="hero__stat">
+          <span class="tech-label">[04]</span>
           <span class="hero__stat-number" data-count="100" data-suffix="%">0</span>
           <span class="hero__stat-label" data-i18n="hero.stats.quality">Качество</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capability Marquee -->
+    <section class="marquee" aria-label="Capabilities">
+      <div class="marquee__inner">
+        <!-- Track 1 -->
+        <div class="marquee__track" aria-hidden="false">
+          <span class="marquee__item" data-i18n="marquee.laser">ЛАЗЕРНАЯ РЕЗКА</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+          <span class="marquee__item" data-i18n="marquee.cnc">CNC ОБРАБОТКА</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+          <span class="marquee__item" data-i18n="marquee.weld">TIG / MIG СВАРКА</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+          <span class="marquee__item" data-i18n="marquee.coating">ПОРОШКОВАЯ ПОКРАСКА</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+          <span class="marquee__item" data-i18n="marquee.bending">ГИБКА ЛИСТОВ</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+          <span class="marquee__item" data-i18n="marquee.design">ПРОЕКТИРОВАНИЕ</span>
+          <span class="marquee__sep" aria-hidden="true">◇</span>
+        </div>
+        <!-- Track 2 (duplicate for seamless loop) -->
+        <div class="marquee__track" aria-hidden="true">
+          <span class="marquee__item" data-i18n="marquee.laser">ЛАЗЕРНАЯ РЕЗКА</span>
+          <span class="marquee__sep">◇</span>
+          <span class="marquee__item" data-i18n="marquee.cnc">CNC ОБРАБОТКА</span>
+          <span class="marquee__sep">◇</span>
+          <span class="marquee__item" data-i18n="marquee.weld">TIG / MIG СВАРКА</span>
+          <span class="marquee__sep">◇</span>
+          <span class="marquee__item" data-i18n="marquee.coating">ПОРОШКОВАЯ ПОКРАСКА</span>
+          <span class="marquee__sep">◇</span>
+          <span class="marquee__item" data-i18n="marquee.bending">ГИБКА ЛИСТОВ</span>
+          <span class="marquee__sep">◇</span>
+          <span class="marquee__item" data-i18n="marquee.design">ПРОЕКТИРОВАНИЕ</span>
+          <span class="marquee__sep">◇</span>
         </div>
       </div>
     </section>
@@ -147,18 +208,89 @@
       <div class="container">
         <div class="about__grid">
           <div class="about__visual">
-            <div class="about__image-wrapper">
-              <div class="about__image">
-                <div class="about__blueprint" aria-hidden="true">
-                  <svg viewBox="0 0 400 400" fill="none">
-                    <circle cx="200" cy="200" r="150" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-                    <circle cx="200" cy="200" r="100" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
-                    <line x1="50" y1="200" x2="350" y2="200" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-                    <line x1="200" y1="50" x2="200" y2="350" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-                    <rect x="100" y="100" width="200" height="200" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
-                  </svg>
-                </div>
+            <div class="about__visual-frame cad-frame">
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+              <div class="about__visual-tech">
+                <span data-i18n="about.blueprintRef">DRG-001 · STAIRCASE TYPE-A</span>
+                <span data-i18n="about.blueprintScale">SCALE 1:50</span>
               </div>
+
+              <div class="about__blueprint-wrap">
+                <svg class="about__blueprint-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Outer frame -->
+                  <rect x="20" y="20" width="360" height="360" stroke="#4A8FBF" stroke-width="0.8" stroke-dasharray="2 4" opacity="0.5"/>
+
+                  <!-- Title block (bottom-right) -->
+                  <rect x="240" y="340" width="140" height="40" stroke="#4A8FBF" stroke-width="1" opacity="0.7"/>
+                  <line x1="240" y1="356" x2="380" y2="356" stroke="#4A8FBF" stroke-width="0.6" opacity="0.6"/>
+                  <line x1="290" y1="340" x2="290" y2="380" stroke="#4A8FBF" stroke-width="0.6" opacity="0.6"/>
+                  <text x="246" y="352" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="0.5">DRG-001</text>
+                  <text x="246" y="368" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="5">STAIRCASE</text>
+                  <text x="246" y="376" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="5">TYPE-A</text>
+                  <text x="294" y="352" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="6">SCALE</text>
+                  <text x="294" y="368" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="5">1 : 50</text>
+
+                  <!-- Staircase (orthographic side view) -->
+                  <g stroke="#4A8FBF" stroke-width="1.2" fill="none">
+                    <!-- Stringer (diagonal) -->
+                    <line x1="60" y1="280" x2="280" y2="100" stroke-width="1.5"/>
+                    <line x1="60" y1="300" x2="280" y2="120" stroke-width="1.5"/>
+                    <!-- Steps (treads) -->
+                    <path d="M60 280 L80 280 L80 260 L110 260 L110 240 L140 240 L140 220 L170 220 L170 200 L200 200 L200 180 L230 180 L230 160 L260 160 L260 140 L280 140" stroke="#6B8EBE" stroke-width="1.4"/>
+                    <!-- Floor line -->
+                    <line x1="40" y1="300" x2="320" y2="300" stroke="#2A4A5C"/>
+                    <!-- Handrail -->
+                    <line x1="60" y1="240" x2="280" y2="60" stroke="#6B8EBE" stroke-width="1.2"/>
+                    <!-- Handrail posts -->
+                    <line x1="80" y1="260" x2="80" y2="220" stroke-width="0.8"/>
+                    <line x1="140" y1="220" x2="140" y2="180" stroke-width="0.8"/>
+                    <line x1="200" y1="180" x2="200" y2="140" stroke-width="0.8"/>
+                    <line x1="260" y1="140" x2="260" y2="100" stroke-width="0.8"/>
+                  </g>
+
+                  <!-- Center lines & axes -->
+                  <line x1="20" y1="200" x2="220" y2="200" stroke="#2A4A5C" stroke-dasharray="4 4" stroke-width="0.5" opacity="0.4"/>
+                  <line x1="170" y1="20" x2="170" y2="320" stroke="#2A4A5C" stroke-dasharray="4 4" stroke-width="0.5" opacity="0.4"/>
+
+                  <!-- Horizontal dimension (bottom) -->
+                  <g stroke="#4A8FBF" stroke-width="0.6" opacity="0.85">
+                    <line x1="60" y1="330" x2="280" y2="330"/>
+                    <line x1="60" y1="324" x2="60" y2="336"/>
+                    <line x1="280" y1="324" x2="280" y2="336"/>
+                  </g>
+                  <text x="170" y="328" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle">2400 mm</text>
+
+                  <!-- Vertical dimension (left) -->
+                  <g stroke="#4A8FBF" stroke-width="0.6" opacity="0.85">
+                    <line x1="40" y1="100" x2="40" y2="300"/>
+                    <line x1="34" y1="100" x2="46" y2="100"/>
+                    <line x1="34" y1="300" x2="46" y2="300"/>
+                  </g>
+                  <text x="36" y="200" fill="#6B8EBE" font-family="JetBrains Mono, monospace" font-size="8" transform="rotate(-90 36 200)" text-anchor="middle">950 mm</text>
+
+                  <!-- Diameter callout -->
+                  <circle cx="290" cy="100" r="6" stroke="#FF6B2C" stroke-width="0.8" fill="none" opacity="0.9"/>
+                  <line x1="290" y1="100" x2="320" y2="80" stroke="#FF6B2C" stroke-width="0.6" opacity="0.7"/>
+                  <text x="324" y="80" fill="#FF8A3D" font-family="JetBrains Mono, monospace" font-size="7">Ø32</text>
+
+                  <!-- Corner ticks -->
+                  <g stroke="#FF6B2C" stroke-width="1" opacity="0.7">
+                    <line x1="20" y1="20" x2="32" y2="20"/>
+                    <line x1="20" y1="20" x2="20" y2="32"/>
+                    <line x1="380" y1="20" x2="368" y2="20"/>
+                    <line x1="380" y1="20" x2="380" y2="32"/>
+                    <line x1="20" y1="380" x2="32" y2="380"/>
+                    <line x1="20" y1="380" x2="20" y2="368"/>
+                    <line x1="380" y1="380" x2="368" y2="380"/>
+                    <line x1="380" y1="380" x2="380" y2="368"/>
+                  </g>
+                </svg>
+              </div>
+
               <div class="about__experience">
                 <span class="about__exp-number">17+</span>
                 <span class="about__exp-text" data-i18n="about.expText">лет опыта</span>
@@ -175,55 +307,27 @@
 
             <div class="about__features">
               <div class="about__feature">
-                <div class="about__feature-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.features.experience.title">17+ лет опыта</h4>
-                  <p data-i18n="about.features.experience.desc">Более 17 лет на рынке металлоконструкций</p>
-                </div>
+                <div class="about__feature-num">[01]</div>
+                <h4 data-i18n="about.features.experience.title">17+ лет опыта</h4>
+                <p data-i18n="about.features.experience.desc">Более 17 лет на рынке металлоконструкций</p>
               </div>
 
               <div class="about__feature">
-                <div class="about__feature-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                    <line x1="8" y1="21" x2="16" y2="21"/>
-                    <line x1="12" y1="17" x2="12" y2="21"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.features.equipment.title">Современное оборудование</h4>
-                  <p data-i18n="about.features.equipment.desc">Лазерная резка, ЧПУ станки, порошковая покраска</p>
-                </div>
+                <div class="about__feature-num">[02]</div>
+                <h4 data-i18n="about.features.equipment.title">Современное оборудование</h4>
+                <p data-i18n="about.features.equipment.desc">Лазерная резка, ЧПУ станки, порошковая покраска</p>
               </div>
 
               <div class="about__feature">
-                <div class="about__feature-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.features.quality.title">Гарантия качества</h4>
-                  <p data-i18n="about.features.quality.desc">100% контроль на всех этапах производства</p>
-                </div>
+                <div class="about__feature-num">[03]</div>
+                <h4 data-i18n="about.features.quality.title">Гарантия качества</h4>
+                <p data-i18n="about.features.quality.desc">100% контроль на всех этапах производства</p>
               </div>
 
               <div class="about__feature">
-                <div class="about__feature-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 data-i18n="about.features.deadline.title">Точные сроки</h4>
-                  <p data-i18n="about.features.deadline.desc">Выполняем работу вовремя без задержек</p>
-                </div>
+                <div class="about__feature-num">[04]</div>
+                <h4 data-i18n="about.features.deadline.title">Точные сроки</h4>
+                <p data-i18n="about.features.deadline.desc">Выполняем работу вовремя без задержек</p>
               </div>
             </div>
           </div>
@@ -242,6 +346,7 @@
         <div class="services__grid">
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-01]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/>
@@ -249,11 +354,17 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.railings.title">Нержавеющие ограждения</h3>
             <p class="service-card__desc" data-i18n="services.items.railings.desc">Перила, поручни и ограждения из нержавеющей стали для лестниц, балконов и террас.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--laser">LASER</span>
+              <span class="spec-tag spec-tag--weld">WELDED</span>
+              <span class="spec-tag">STAINLESS 304</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
 
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-02]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M4 22h16M2 18h20M6 14h12M8 10h8M10 6h4M12 2v4"/>
@@ -261,11 +372,17 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.stairs.title">Лестницы и марши</h3>
             <p class="service-card__desc" data-i18n="services.items.stairs.desc">Металлические лестницы любой сложности: винтовые, маршевые, на монокосоуре.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--cnc">CNC</span>
+              <span class="spec-tag spec-tag--weld">WELDED</span>
+              <span class="spec-tag spec-tag--coat">POWDER COATED</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
 
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-03]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -275,11 +392,17 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.loft.title">Мебель ЛОФТ</h3>
             <p class="service-card__desc" data-i18n="services.items.loft.desc">Столы, стулья, полки и другая мебель в стиле лофт для дома и офиса.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--laser">LASER</span>
+              <span class="spec-tag spec-tag--weld">WELDED</span>
+              <span class="spec-tag spec-tag--coat">COATED</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
 
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-04]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -288,11 +411,17 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.kitchen.title">Кухонная мебель</h3>
             <p class="service-card__desc" data-i18n="services.items.kitchen.desc">Каркасы и комплектующие для кухонной мебели из металла.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--laser">LASER</span>
+              <span class="spec-tag spec-tag--cnc">CNC</span>
+              <span class="spec-tag">STAINLESS</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
 
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-05]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -301,11 +430,17 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.doors.title">Двери и ворота</h3>
             <p class="service-card__desc" data-i18n="services.items.doors.desc">Металлические двери, ворота, калитки и заборы с порошковым покрытием.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--weld">WELDED</span>
+              <span class="spec-tag spec-tag--coat">POWDER COATED</span>
+              <span class="spec-tag">RAL FULL</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
 
           <article class="service-card">
             <div class="service-card__shine"></div>
+            <div class="service-card__tech"><span class="tech-label">[SVC-06]</span></div>
             <div class="service-card__icon">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M2 20h20M5 20v-8h3v8M10 20V8h4v12M17 20v-5h3v5"/>
@@ -313,6 +448,11 @@
             </div>
             <h3 class="service-card__title" data-i18n="services.items.structures.title">Металлоконструкции</h3>
             <p class="service-card__desc" data-i18n="services.items.structures.desc">Несущие конструкции, ангары, навесы и каркасы зданий.</p>
+            <div class="service-card__tags">
+              <span class="spec-tag spec-tag--laser">LASER</span>
+              <span class="spec-tag spec-tag--weld">WELDED</span>
+              <span class="spec-tag">STRUCTURAL</span>
+            </div>
             <a href="#contact" class="service-card__link" data-i18n="services.link">Подробнее →</a>
           </article>
         </div>
@@ -329,61 +469,215 @@
       </div>
     </section>
 
-    <!-- Process Section -->
+    <!-- Equipment Section -->
+    <section class="equipment section" id="equipment">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-i18n="equipment.label">Оборудование</span>
+          <h2 class="section__title" data-i18n="equipment.title">Наш цех</h2>
+        </div>
+
+        <div class="equipment__grid">
+
+          <!-- Laser Cutter -->
+          <article class="equipment-card cad-frame">
+            <span class="cad-frame__corner cad-frame__corner--tl"></span>
+            <span class="cad-frame__corner cad-frame__corner--tr"></span>
+            <span class="cad-frame__corner cad-frame__corner--bl"></span>
+            <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+            <div class="equipment-card__visual">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="14" y="40" width="92" height="48" stroke="currentColor" stroke-width="1.3" rx="2"/>
+                <rect x="20" y="46" width="80" height="36" stroke="currentColor" stroke-width="0.7" opacity="0.6"/>
+                <line x1="60" y1="20" x2="60" y2="46" stroke="currentColor" stroke-width="1.2"/>
+                <rect x="50" y="14" width="20" height="10" stroke="currentColor" stroke-width="1.3" rx="1"/>
+                <circle cx="60" cy="56" r="2" fill="#FF6B2C"/>
+                <line x1="60" y1="58" x2="60" y2="82" stroke="#FF6B2C" stroke-width="0.8" stroke-dasharray="2 2"/>
+                <line x1="14" y1="100" x2="106" y2="100" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                <line x1="14" y1="100" x2="14" y2="106" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                <line x1="106" y1="100" x2="106" y2="106" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                <text x="60" y="112" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle" opacity="0.6">3000mm</text>
+              </svg>
+            </div>
+            <div class="equipment-card__body">
+              <span class="tech-label">[EQ-01] · LASER</span>
+              <h3 class="equipment-card__title" data-i18n="equipment.items.laser.title">Лазерный резак</h3>
+              <p class="equipment-card__model" data-i18n="equipment.items.laser.model">CO₂ · 3 кВт · стол 1500×3000 мм</p>
+              <ul class="equipment-card__specs">
+                <li><span data-i18n="equipment.items.laser.specs.precisionLabel">Точность</span><strong data-i18n="equipment.items.laser.specs.precisionValue">±0.1 мм</strong></li>
+                <li><span data-i18n="equipment.items.laser.specs.thicknessLabel">Толщина</span><strong data-i18n="equipment.items.laser.specs.thicknessValue">до 20 мм</strong></li>
+                <li><span data-i18n="equipment.items.laser.specs.materialLabel">Материал</span><strong data-i18n="equipment.items.laser.specs.materialValue">сталь / нерж</strong></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- CNC Mill -->
+          <article class="equipment-card cad-frame">
+            <span class="cad-frame__corner cad-frame__corner--tl"></span>
+            <span class="cad-frame__corner cad-frame__corner--tr"></span>
+            <span class="cad-frame__corner cad-frame__corner--bl"></span>
+            <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+            <div class="equipment-card__visual">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="14" y="74" width="92" height="20" stroke="currentColor" stroke-width="1.3" rx="2"/>
+                <rect x="22" y="22" width="76" height="10" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="22" y1="32" x2="22" y2="78" stroke="currentColor" stroke-width="1.1"/>
+                <line x1="98" y1="32" x2="98" y2="78" stroke="currentColor" stroke-width="1.1"/>
+                <rect x="48" y="38" width="24" height="16" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="60" y1="54" x2="60" y2="74" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="60" cy="78" r="4" stroke="#FF6B2C" stroke-width="1" fill="none"/>
+                <line x1="48" y1="78" x2="72" y2="78" stroke="#FF6B2C" stroke-width="0.6" stroke-dasharray="1 2"/>
+                <text x="60" y="106" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle" opacity="0.6">5-AXIS</text>
+                <line x1="14" y1="100" x2="40" y2="100" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+                <line x1="80" y1="100" x2="106" y2="100" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="equipment-card__body">
+              <span class="tech-label">[EQ-02] · CNC</span>
+              <h3 class="equipment-card__title" data-i18n="equipment.items.cnc.title">ЧПУ обработка</h3>
+              <p class="equipment-card__model" data-i18n="equipment.items.cnc.model">5 осей · допуск ±0.01 мм</p>
+              <ul class="equipment-card__specs">
+                <li><span data-i18n="equipment.items.cnc.specs.areaLabel">Рабочее поле</span><strong data-i18n="equipment.items.cnc.specs.areaValue">600×400×500 мм</strong></li>
+                <li><span data-i18n="equipment.items.cnc.specs.toolLabel">Смена инструмента</span><strong data-i18n="equipment.items.cnc.specs.toolValue">автоматическая</strong></li>
+                <li><span data-i18n="equipment.items.cnc.specs.materialLabel">Материал</span><strong data-i18n="equipment.items.cnc.specs.materialValue">сталь / алюминий</strong></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- TIG/MIG Welder -->
+          <article class="equipment-card cad-frame">
+            <span class="cad-frame__corner cad-frame__corner--tl"></span>
+            <span class="cad-frame__corner cad-frame__corner--tr"></span>
+            <span class="cad-frame__corner cad-frame__corner--bl"></span>
+            <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+            <div class="equipment-card__visual">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="20" y="34" width="58" height="50" stroke="currentColor" stroke-width="1.3" rx="2"/>
+                <line x1="20" y1="46" x2="78" y2="46" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="34" cy="58" r="5" stroke="currentColor" stroke-width="1" fill="none"/>
+                <circle cx="34" cy="58" r="1.4" fill="currentColor"/>
+                <rect x="44" y="54" width="26" height="2" stroke="currentColor" stroke-width="0.7"/>
+                <rect x="44" y="62" width="26" height="2" stroke="currentColor" stroke-width="0.7"/>
+                <line x1="78" y1="60" x2="100" y2="60" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="100" cy="60" r="6" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <path d="M100 60 L108 56 L108 64 Z" fill="#FF6B2C"/>
+                <circle cx="113" cy="48" r="1" fill="#FFC647"/>
+                <circle cx="116" cy="55" r="0.8" fill="#FFC647"/>
+                <circle cx="114" cy="68" r="0.8" fill="#FF6B2C"/>
+                <circle cx="118" cy="64" r="0.6" fill="#FFC647"/>
+                <line x1="20" y1="94" x2="78" y2="94" stroke="currentColor" stroke-width="0.6" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="equipment-card__body">
+              <span class="tech-label">[EQ-03] · WELD</span>
+              <h3 class="equipment-card__title" data-i18n="equipment.items.welder.title">Сварка TIG / MIG</h3>
+              <p class="equipment-card__model" data-i18n="equipment.items.welder.model">Multi-process · 400 А</p>
+              <ul class="equipment-card__specs">
+                <li><span data-i18n="equipment.items.welder.specs.thicknessLabel">Толщина</span><strong data-i18n="equipment.items.welder.specs.thicknessValue">до 12 мм</strong></li>
+                <li><span data-i18n="equipment.items.welder.specs.materialLabel">Материал</span><strong data-i18n="equipment.items.welder.specs.materialValue">сталь / нерж / алюминий</strong></li>
+                <li><span data-i18n="equipment.items.welder.specs.certLabel">Сертификация</span><strong data-i18n="equipment.items.welder.specs.certValue">сварщики 5 разряда</strong></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Powder Coating -->
+          <article class="equipment-card cad-frame">
+            <span class="cad-frame__corner cad-frame__corner--tl"></span>
+            <span class="cad-frame__corner cad-frame__corner--tr"></span>
+            <span class="cad-frame__corner cad-frame__corner--bl"></span>
+            <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+            <div class="equipment-card__visual">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="18" y="28" width="84" height="64" stroke="currentColor" stroke-width="1.3" rx="2"/>
+                <line x1="18" y1="42" x2="102" y2="42" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                <rect x="56" y="50" width="8" height="32" stroke="currentColor" stroke-width="1.2"/>
+                <line x1="56" y1="50" x2="64" y2="50" stroke="currentColor" stroke-width="0.7"/>
+                <line x1="60" y1="42" x2="60" y2="50" stroke="currentColor" stroke-width="0.6"/>
+                <circle cx="30" cy="60" r="2" fill="#FFC647" opacity="0.9"/>
+                <circle cx="36" cy="56" r="1.3" fill="#FFC647" opacity="0.7"/>
+                <circle cx="42" cy="64" r="1.6" fill="#FF8A3D" opacity="0.8"/>
+                <circle cx="48" cy="70" r="1.2" fill="#FFC647" opacity="0.7"/>
+                <circle cx="80" cy="58" r="2" fill="#FFC647" opacity="0.9"/>
+                <circle cx="86" cy="64" r="1.5" fill="#FF8A3D" opacity="0.8"/>
+                <circle cx="78" cy="68" r="1.3" fill="#FFC647" opacity="0.7"/>
+                <text x="60" y="106" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle" opacity="0.6">200°C</text>
+              </svg>
+            </div>
+            <div class="equipment-card__body">
+              <span class="tech-label">[EQ-04] · COAT</span>
+              <h3 class="equipment-card__title" data-i18n="equipment.items.coating.title">Порошковая покраска</h3>
+              <p class="equipment-card__model" data-i18n="equipment.items.coating.model">Промышленная камера · 200°C</p>
+              <ul class="equipment-card__specs">
+                <li><span data-i18n="equipment.items.coating.specs.paletteLabel">Палитра</span><strong data-i18n="equipment.items.coating.specs.paletteValue">RAL полный спектр</strong></li>
+                <li><span data-i18n="equipment.items.coating.specs.antiLabel">Защита</span><strong data-i18n="equipment.items.coating.specs.antiValue">антикоррозийная</strong></li>
+                <li><span data-i18n="equipment.items.coating.specs.sizeLabel">Размер детали</span><strong data-i18n="equipment.items.coating.specs.sizeValue">до 2 м</strong></li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section (Vertical Timeline) -->
     <section class="process section" id="process">
       <div class="container">
         <div class="section__header">
           <span class="section__label" data-i18n="process.label">Процесс</span>
           <h2 class="section__title" data-i18n="process.title">Как мы работаем</h2>
         </div>
-      </div>
 
-      <div class="process__wrapper" id="processWrapper">
-        <div class="process__track" id="processTrack">
+        <div class="process__timeline">
+          <div class="process__line" aria-hidden="true"></div>
+
           <div class="process__step" data-step="1">
-            <div class="process__step-number">01</div>
+            <div class="process__step-marker">01</div>
             <div class="process__step-content">
-              <h3 data-i18n="process.steps.design.title">Проектирование</h3>
-              <p data-i18n="process.steps.design.desc">Разработка чертежей и 3D-моделей с учётом всех требований.</p>
+              <span class="tech-label">[STAGE-01]</span>
+              <h3 class="process__step-title" data-i18n="process.steps.design.title">Проектирование</h3>
+              <p class="process__step-desc" data-i18n="process.steps.design.desc">Разрабатываем детальный проект с учётом всех ваших требований и пожеланий.</p>
             </div>
           </div>
 
           <div class="process__step" data-step="2">
-            <div class="process__step-number">02</div>
+            <div class="process__step-marker">02</div>
             <div class="process__step-content">
-              <h3 data-i18n="process.steps.engineering.title">Инжиниринг</h3>
-              <p data-i18n="process.steps.engineering.desc">Технические расчёты и подбор материалов.</p>
+              <span class="tech-label">[STAGE-02]</span>
+              <h3 class="process__step-title" data-i18n="process.steps.engineering.title">Инжиниринг</h3>
+              <p class="process__step-desc" data-i18n="process.steps.engineering.desc">Создаём рабочую документацию и проводим инженерные расчёты прочности.</p>
             </div>
           </div>
 
           <div class="process__step" data-step="3">
-            <div class="process__step-number">03</div>
+            <div class="process__step-marker">03</div>
             <div class="process__step-content">
-              <h3 data-i18n="process.steps.fabrication.title">Производство</h3>
-              <p data-i18n="process.steps.fabrication.desc">Лазерная резка, гибка, сварка и обработка.</p>
+              <span class="tech-label">[STAGE-03]</span>
+              <h3 class="process__step-title" data-i18n="process.steps.fabrication.title">Производство</h3>
+              <p class="process__step-desc" data-i18n="process.steps.fabrication.desc">Изготавливаем детали на современном оборудовании с точностью до миллиметра.</p>
             </div>
           </div>
 
           <div class="process__step" data-step="4">
-            <div class="process__step-number">04</div>
+            <div class="process__step-marker">04</div>
             <div class="process__step-content">
-              <h3 data-i18n="process.steps.assembly.title">Сборка</h3>
-              <p data-i18n="process.steps.assembly.desc">Контрольная сборка и проверка качества.</p>
+              <span class="tech-label">[STAGE-04]</span>
+              <h3 class="process__step-title" data-i18n="process.steps.assembly.title">Сборка</h3>
+              <p class="process__step-desc" data-i18n="process.steps.assembly.desc">Собираем конструкции на производстве, проводим контроль качества.</p>
             </div>
           </div>
 
           <div class="process__step" data-step="5">
-            <div class="process__step-number">05</div>
+            <div class="process__step-marker">05</div>
             <div class="process__step-content">
-              <h3 data-i18n="process.steps.installation.title">Монтаж</h3>
-              <p data-i18n="process.steps.installation.desc">Профессиональная установка на объекте.</p>
+              <span class="tech-label">[STAGE-05]</span>
+              <h3 class="process__step-title" data-i18n="process.steps.installation.title">Монтаж</h3>
+              <p class="process__step-desc" data-i18n="process.steps.installation.desc">Доставляем и устанавливаем готовые конструкции на вашем объекте.</p>
             </div>
           </div>
-        </div>
-
-        <!-- Progress track wraps the fill bar; JS targets #processProgress to set width% -->
-        <div class="process__progress-track">
-          <div class="process__progress" id="processProgress"></div>
         </div>
       </div>
     </section>
@@ -397,72 +691,122 @@
         </div>
 
         <div class="projects__grid">
-          <article class="project-card project-card--large">
-            <div class="project-card__image">
-              <div class="project-card__placeholder" style="--bg: linear-gradient(135deg, #2A2F36 0%, #1A1F26 100%);">
-                <span>Лестничный марш</span>
-              </div>
-            </div>
-            <div class="project-card__overlay"></div>
-            <div class="project-card__content">
-              <span class="project-card__category">Лестницы</span>
-              <h3>Винтовая лестница для частного дома</h3>
-              <p>Нержавеющая сталь, стеклянные ступени, LED-подсветка</p>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card__image">
-              <div class="project-card__placeholder" style="--bg: linear-gradient(135deg, #3A3F46 0%, #252A31 100%);">
-                <span>Ограждение</span>
-              </div>
-            </div>
-            <div class="project-card__overlay"></div>
-            <div class="project-card__content">
-              <span class="project-card__category">Ограждения</span>
-              <h3>Перила для торгового центра</h3>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card__image">
-              <div class="project-card__placeholder" style="--bg: linear-gradient(135deg, #1E2329 0%, #15191E 100%);">
-                <span>Мебель ЛОФТ</span>
-              </div>
-            </div>
-            <div class="project-card__overlay"></div>
-            <div class="project-card__content">
-              <span class="project-card__category">Мебель</span>
-              <h3>Офисная мебель ЛОФТ</h3>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card__image">
-              <div class="project-card__placeholder" style="--bg: linear-gradient(135deg, #32373E 0%, #20252C 100%);">
-                <span>Ворота</span>
-              </div>
-            </div>
-            <div class="project-card__overlay"></div>
-            <div class="project-card__content">
-              <span class="project-card__category">Ворота</span>
-              <h3>Автоматические ворота</h3>
-            </div>
-          </article>
 
           <article class="project-card project-card--large">
-            <div class="project-card__image">
-              <div class="project-card__placeholder" style="--bg: linear-gradient(135deg, #262B32 0%, #1A1F25 100%);">
-                <span>Каркас здания</span>
+            <div class="photo-slot photo-slot--16x7">
+              <div class="photo-slot__placeholder">
+                <span class="tech-label">[PRJ-001]</span>
+                <span class="photo-slot__caption">Лестничный марш · 2024</span>
               </div>
+              <div class="photo-slot__crosshair"></div>
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
             </div>
-            <div class="project-card__overlay"></div>
             <div class="project-card__content">
-              <span class="project-card__category">Металлоконструкции</span>
-              <h3>Несущий каркас склада 2000м²</h3>
-              <p>Производство и монтаж за 45 дней</p>
+              <span class="project-card__category" data-i18n="projects.items.stairs.category">Лестницы</span>
+              <h3 class="project-card__title" data-i18n="projects.items.stairs.title">Винтовая лестница для частного дома</h3>
+              <dl class="project-card__specs">
+                <div><dt data-i18n="projects.specs.year">Год</dt><dd data-i18n="projects.items.stairs.year">2024</dd></div>
+                <div><dt data-i18n="projects.specs.location">Локация</dt><dd data-i18n="projects.items.stairs.location">Наманган</dd></div>
+                <div><dt data-i18n="projects.specs.material">Материал</dt><dd data-i18n="projects.items.stairs.material">Нерж. сталь · стекло</dd></div>
+              </dl>
             </div>
           </article>
+
+          <article class="project-card">
+            <div class="photo-slot photo-slot--16x10">
+              <div class="photo-slot__placeholder">
+                <span class="tech-label">[PRJ-002]</span>
+                <span class="photo-slot__caption">Ограждение · 2023</span>
+              </div>
+              <div class="photo-slot__crosshair"></div>
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
+            </div>
+            <div class="project-card__content">
+              <span class="project-card__category" data-i18n="projects.items.railings.category">Ограждения</span>
+              <h3 class="project-card__title" data-i18n="projects.items.railings.title">Перила для торгового центра</h3>
+              <dl class="project-card__specs">
+                <div><dt data-i18n="projects.specs.year">Год</dt><dd data-i18n="projects.items.railings.year">2023</dd></div>
+                <div><dt data-i18n="projects.specs.location">Локация</dt><dd data-i18n="projects.items.railings.location">Фергана</dd></div>
+                <div><dt data-i18n="projects.specs.material">Материал</dt><dd data-i18n="projects.items.railings.material">Нерж. сталь</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="photo-slot photo-slot--16x10">
+              <div class="photo-slot__placeholder">
+                <span class="tech-label">[PRJ-003]</span>
+                <span class="photo-slot__caption">Мебель ЛОФТ · 2024</span>
+              </div>
+              <div class="photo-slot__crosshair"></div>
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
+            </div>
+            <div class="project-card__content">
+              <span class="project-card__category" data-i18n="projects.items.loft.category">Мебель</span>
+              <h3 class="project-card__title" data-i18n="projects.items.loft.title">Офисная мебель ЛОФТ</h3>
+              <dl class="project-card__specs">
+                <div><dt data-i18n="projects.specs.year">Год</dt><dd data-i18n="projects.items.loft.year">2024</dd></div>
+                <div><dt data-i18n="projects.specs.location">Локация</dt><dd data-i18n="projects.items.loft.location">Ташкент</dd></div>
+                <div><dt data-i18n="projects.specs.material">Материал</dt><dd data-i18n="projects.items.loft.material">Сталь · дуб</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="photo-slot photo-slot--16x10">
+              <div class="photo-slot__placeholder">
+                <span class="tech-label">[PRJ-004]</span>
+                <span class="photo-slot__caption">Ворота · 2023</span>
+              </div>
+              <div class="photo-slot__crosshair"></div>
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
+            </div>
+            <div class="project-card__content">
+              <span class="project-card__category" data-i18n="projects.items.gates.category">Ворота</span>
+              <h3 class="project-card__title" data-i18n="projects.items.gates.title">Автоматические ворота</h3>
+              <dl class="project-card__specs">
+                <div><dt data-i18n="projects.specs.year">Год</dt><dd data-i18n="projects.items.gates.year">2023</dd></div>
+                <div><dt data-i18n="projects.specs.location">Локация</dt><dd data-i18n="projects.items.gates.location">Наманган</dd></div>
+                <div><dt data-i18n="projects.specs.material">Материал</dt><dd data-i18n="projects.items.gates.material">Сталь · порошок</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="project-card project-card--large">
+            <div class="photo-slot photo-slot--16x7">
+              <div class="photo-slot__placeholder">
+                <span class="tech-label">[PRJ-005]</span>
+                <span class="photo-slot__caption">Каркас склада · 2024</span>
+              </div>
+              <div class="photo-slot__crosshair"></div>
+              <span class="cad-frame__corner cad-frame__corner--tl"></span>
+              <span class="cad-frame__corner cad-frame__corner--tr"></span>
+              <span class="cad-frame__corner cad-frame__corner--bl"></span>
+              <span class="cad-frame__corner cad-frame__corner--br"></span>
+            </div>
+            <div class="project-card__content">
+              <span class="project-card__category" data-i18n="projects.items.structure.category">Металлоконструкции</span>
+              <h3 class="project-card__title" data-i18n="projects.items.structure.title">Несущий каркас склада 2000 м²</h3>
+              <dl class="project-card__specs">
+                <div><dt data-i18n="projects.specs.year">Год</dt><dd data-i18n="projects.items.structure.year">2024</dd></div>
+                <div><dt data-i18n="projects.specs.location">Локация</dt><dd data-i18n="projects.items.structure.location">Наманган</dd></div>
+                <div><dt data-i18n="projects.specs.area">Площадь</dt><dd data-i18n="projects.items.structure.area">2000 м²</dd></div>
+              </dl>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -471,13 +815,30 @@
     <section class="metrics section" id="metrics">
       <div class="container">
         <div class="metrics__grid">
+
           <div class="metric-card">
             <div class="metric-card__blueprint" aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="none">
-                <rect x="10" y="10" width="80" height="80" stroke="currentColor" stroke-width="0.5"/>
-                <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="0.5"/>
+              <svg viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width="0.6"/>
+                <circle cx="60" cy="60" r="32" stroke="currentColor" stroke-width="0.6"/>
+                <g stroke="currentColor" stroke-width="0.6">
+                  <line x1="60" y1="10" x2="60" y2="18"/>
+                  <line x1="60" y1="102" x2="60" y2="110"/>
+                  <line x1="10" y1="60" x2="18" y2="60"/>
+                  <line x1="102" y1="60" x2="110" y2="60"/>
+                  <line x1="22" y1="22" x2="28" y2="28"/>
+                  <line x1="92" y1="92" x2="98" y2="98"/>
+                  <line x1="22" y1="98" x2="28" y2="92"/>
+                  <line x1="92" y1="28" x2="98" y2="22"/>
+                  <!-- Gear teeth -->
+                  <path d="M60 26 L62 22 L58 22 Z" fill="currentColor"/>
+                  <path d="M60 94 L62 98 L58 98 Z" fill="currentColor"/>
+                  <path d="M26 60 L22 62 L22 58 Z" fill="currentColor"/>
+                  <path d="M94 60 L98 62 L98 58 Z" fill="currentColor"/>
+                </g>
               </svg>
             </div>
+            <div class="metric-card__tech"><span class="tech-label">[M-01]</span></div>
             <span class="metric-card__number" data-count="120">0</span>
             <span class="metric-card__suffix">+</span>
             <span class="metric-card__label" data-i18n="metrics.projects">Проектов</span>
@@ -485,22 +846,31 @@
 
           <div class="metric-card">
             <div class="metric-card__blueprint" aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="none">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="0.5"/>
-                <line x1="50" y1="10" x2="50" y2="50" stroke="currentColor" stroke-width="0.5"/>
-                <line x1="50" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="0.5"/>
+              <svg viewBox="0 0 120 120" fill="none">
+                <!-- Isometric cube -->
+                <path d="M60 14 L100 36 L100 80 L60 102 L20 80 L20 36 Z" stroke="currentColor" stroke-width="0.6"/>
+                <path d="M20 36 L60 58 L100 36" stroke="currentColor" stroke-width="0.6"/>
+                <path d="M60 58 L60 102" stroke="currentColor" stroke-width="0.6"/>
+                <path d="M40 47 L80 47" stroke="currentColor" stroke-width="0.4" stroke-dasharray="2 2"/>
+                <text x="60" y="118" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">17Y</text>
               </svg>
             </div>
+            <div class="metric-card__tech"><span class="tech-label">[M-02]</span></div>
             <span class="metric-card__number" data-count="15">0</span>
             <span class="metric-card__label" data-i18n="metrics.years">Лет опыта</span>
           </div>
 
           <div class="metric-card">
             <div class="metric-card__blueprint" aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="none">
-                <path d="M50 10L90 30v40L50 90 10 70V30z" stroke="currentColor" stroke-width="0.5"/>
+              <svg viewBox="0 0 120 120" fill="none">
+                <!-- Hexagonal nut -->
+                <path d="M60 14 L98 36 L98 80 L60 102 L22 80 L22 36 Z" stroke="currentColor" stroke-width="0.8"/>
+                <circle cx="60" cy="58" r="20" stroke="currentColor" stroke-width="0.6"/>
+                <path d="M50 58 L70 58 M60 48 L60 68" stroke="currentColor" stroke-width="0.4"/>
+                <text x="60" y="118" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">24/7</text>
               </svg>
             </div>
+            <div class="metric-card__tech"><span class="tech-label">[M-03]</span></div>
             <span class="metric-card__number" data-count="24">0</span>
             <span class="metric-card__suffix">/7</span>
             <span class="metric-card__label" data-i18n="metrics.support">Поддержка</span>
@@ -508,14 +878,32 @@
 
           <div class="metric-card">
             <div class="metric-card__blueprint" aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="none">
-                <polygon points="50,10 90,40 75,90 25,90 10,40" stroke="currentColor" stroke-width="0.5"/>
+              <svg viewBox="0 0 120 120" fill="none">
+                <!-- Calipers -->
+                <rect x="18" y="50" width="84" height="6" stroke="currentColor" stroke-width="0.7"/>
+                <rect x="18" y="50" width="6" height="20" stroke="currentColor" stroke-width="0.7"/>
+                <rect x="96" y="50" width="6" height="20" stroke="currentColor" stroke-width="0.7"/>
+                <rect x="58" y="40" width="20" height="22" stroke="currentColor" stroke-width="0.7"/>
+                <line x1="68" y1="62" x2="68" y2="80" stroke="currentColor" stroke-width="0.7"/>
+                <g stroke="currentColor" stroke-width="0.3">
+                  <line x1="24" y1="60" x2="24" y2="64"/>
+                  <line x1="32" y1="60" x2="32" y2="63"/>
+                  <line x1="40" y1="60" x2="40" y2="64"/>
+                  <line x1="48" y1="60" x2="48" y2="63"/>
+                  <line x1="56" y1="60" x2="56" y2="64"/>
+                  <line x1="76" y1="60" x2="76" y2="64"/>
+                  <line x1="84" y1="60" x2="84" y2="63"/>
+                  <line x1="92" y1="60" x2="92" y2="64"/>
+                </g>
+                <text x="60" y="100" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="6" text-anchor="middle">±0.1mm</text>
               </svg>
             </div>
+            <div class="metric-card__tech"><span class="tech-label">[M-04]</span></div>
             <span class="metric-card__number" data-count="100">0</span>
             <span class="metric-card__suffix">%</span>
             <span class="metric-card__label" data-i18n="metrics.precision">Точность</span>
           </div>
+
         </div>
       </div>
     </section>
@@ -528,8 +916,10 @@
       </div>
       <div class="container">
         <div class="cta__content">
-          <h2 class="cta__title" data-i18n="cta.title">СОЗДАДИМ ЧТО-ТО ВЕЧНОЕ</h2>
-          <p class="cta__subtitle" data-i18n="cta.subtitle">Расскажите о вашем проекте, и мы подготовим индивидуальное предложение.</p>
+          <span class="tech-label cta__label" data-i18n="cta.label">Запуск проекта</span>
+          <h2 class="cta__title" data-i18n="cta.title">Создадим что-то вечное</h2>
+          <div class="weld-line weld-line--wide" aria-hidden="true"></div>
+          <p class="cta__subtitle" data-i18n="cta.subtitle">Расскажите о вашем проекте, и мы подготовим индивидуальное предложение в течение 24 часов.</p>
           <a href="#contact" class="btn btn--glow btn--large" data-i18n="cta.primary">Начать проект</a>
         </div>
       </div>
@@ -573,8 +963,24 @@
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                 </span>
-                <span>г. Наманган, промзона Сергели</span>
+                <span data-i18n="contact.location.address">г. Наманган, промзона Сергели</span>
               </div>
+            </div>
+
+            <div class="contact__hours">
+              <span class="tech-label" data-i18n="contact.hours.label">Режим работы</span>
+              <ul>
+                <li><span data-i18n="contact.hours.weekdays">Пн – Пт</span><strong data-i18n="contact.hours.weekdaysTime">09:00 – 18:00</strong></li>
+                <li><span data-i18n="contact.hours.saturday">Сб</span><strong data-i18n="contact.hours.saturdayTime">09:00 – 14:00</strong></li>
+                <li><span data-i18n="contact.hours.sunday">Вс</span><strong data-i18n="contact.hours.sundayValue">Выходной</strong></li>
+              </ul>
+            </div>
+
+            <div class="contact__map" aria-hidden="true">
+              <span class="contact__map-axis contact__map-axis--x-min">41.000° N</span>
+              <span class="contact__map-axis contact__map-axis--x-max">71.673° E</span>
+              <div class="contact__map-pin"></div>
+              <span class="contact__map-coords" data-i18n="contact.location.coords">41.0011° N · 71.6726° E · Наманган</span>
             </div>
 
             <div class="contact__social">
@@ -594,26 +1000,38 @@
             </div>
           </div>
 
-          <form class="contact__form" id="contactForm">
-            <div class="form__group">
-              <input type="text" class="form__input" id="name" placeholder=" " required>
-              <label class="form__label" for="name" data-i18n="contact.form.name">Ваше имя</label>
+          <div class="contact__form-wrap cad-frame">
+            <span class="cad-frame__corner cad-frame__corner--tl"></span>
+            <span class="cad-frame__corner cad-frame__corner--tr"></span>
+            <span class="cad-frame__corner cad-frame__corner--bl"></span>
+            <span class="cad-frame__corner cad-frame__corner--br"></span>
+
+            <div class="contact__form-header">
+              <span class="tech-label" data-i18n="contact.formLabel">Форма заявки</span>
+              <h3 class="contact__form-title" data-i18n="contact.formTitle">Оставить заявку</h3>
             </div>
 
-            <div class="form__group">
-              <input type="tel" class="form__input" id="phone" placeholder=" " required>
-              <label class="form__label" for="phone" data-i18n="contact.form.phone">Телефон</label>
-            </div>
+            <form class="contact__form" id="contactForm">
+              <div class="form__group">
+                <input type="text" class="form__input" id="name" placeholder=" " required>
+                <label class="form__label" for="name" data-i18n="contact.form.name">Ваше имя</label>
+              </div>
 
-            <div class="form__group">
-              <textarea class="form__input form__input--textarea" id="message" placeholder=" " rows="4"></textarea>
-              <label class="form__label" for="message" data-i18n="contact.form.message">Сообщение</label>
-            </div>
+              <div class="form__group">
+                <input type="tel" class="form__input" id="phone" placeholder=" " required>
+                <label class="form__label" for="phone" data-i18n="contact.form.phone">Телефон</label>
+              </div>
 
-            <button type="submit" class="btn btn--primary btn--large btn--full" data-i18n="contact.form.submit">
-              Отправить заявку
-            </button>
-          </form>
+              <div class="form__group">
+                <textarea class="form__input form__input--textarea" id="message" placeholder=" " rows="4"></textarea>
+                <label class="form__label" for="message" data-i18n="contact.form.message">Сообщение</label>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--large btn--full" data-i18n="contact.form.submit">
+                Отправить заявку
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -633,6 +1051,7 @@
         <nav class="footer__nav">
           <a href="#about" data-i18n="nav.about">О компании</a>
           <a href="#services" data-i18n="nav.services">Услуги</a>
+          <a href="#equipment" data-i18n="nav.equipment">Оборудование</a>
           <a href="#projects" data-i18n="nav.projects">Проекты</a>
           <a href="#contact" data-i18n="nav.contact">Контакты</a>
         </nav>
@@ -640,11 +1059,20 @@
         <div class="footer__contact">
           <a href="tel:+998901234567">+998 (90) 123-45-67</a>
           <a href="mailto:info@bestmetall.uz">info@bestmetall.uz</a>
+          <span data-i18n="footer.address">г. Наманган, промзона Сергели</span>
         </div>
       </div>
 
+      <div class="footer__certs">
+        <span class="tech-label">[ISO 9001]</span>
+        <span class="tech-label">[CE CERT]</span>
+        <span class="tech-label">[QC PASSED]</span>
+        <span class="tech-label">[EST. 2008]</span>
+      </div>
+
       <div class="footer__bottom">
-        <p>© 2024 Best Metall. <span data-i18n="footer.rights">Все права защищены.</span></p>
+        <p data-i18n="footer.copyright">© 2026 ООО "Best Metall". Все права защищены.</p>
+        <p class="footer__credits" data-i18n="footer.credits">Сделано с огнём и сталью</p>
       </div>
     </div>
   </footer>

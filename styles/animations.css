@@ -444,13 +444,8 @@
 }
 
 /* ============================================
-   MARQUEE ANIMATION
+   MARQUEE ANIMATION (legacy keyframes)
    ============================================ */
-
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-}
 
 .marquee__content {
   display: inline-block;
@@ -462,11 +457,26 @@
 }
 
 @keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   FORGE / SPARK ANIMATIONS
+   ============================================ */
+
+@keyframes sparkFly {
   0% {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(var(--spark-mid-x, 0), var(--spark-mid-y, -20px)) scale(1);
   }
   100% {
-    transform: translateX(-50%);
+    opacity: 0;
+    transform: translate(var(--spark-end-x, 0), var(--spark-end-y, -160px)) scale(0.2);
   }
 }
 
@@ -543,9 +553,19 @@
   
   .metallic-reflection::before,
   .marquee__content,
+  .marquee__inner,
   .float,
   .pulse,
-  .blueprint-pulse {
+  .blueprint-pulse,
+  .weld-line,
+  .weld-line::after,
+  .process__line::after,
+  .metric-card__blueprint,
+  .cta__glow--1,
+  .cta__glow--2,
+  .tech-bar__dot,
+  .contact__map-pin::before,
+  .contact__map-pin::after {
     animation: none;
   }
   

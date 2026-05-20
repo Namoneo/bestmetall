@@ -24,6 +24,11 @@ const LanguageManager = {
   currentLang: localStorage.getItem('bestmetall-lang') || 'ru',
 
   init() {
+    // Guard against stale values from older builds (e.g. 'en')
+    if (this.currentLang !== 'ru' && this.currentLang !== 'uz') {
+      this.currentLang = 'ru';
+      localStorage.setItem('bestmetall-lang', this.currentLang);
+    }
     this.applyLanguage(this.currentLang);
     this.setupToggle();
     this.updateToggleUI();
@@ -33,7 +38,7 @@ const LanguageManager = {
     const toggle = document.getElementById('langToggle');
     if (toggle) {
       toggle.addEventListener('click', () => {
-        this.currentLang = this.currentLang === 'ru' ? 'en' : 'ru';
+        this.currentLang = this.currentLang === 'ru' ? 'uz' : 'ru';
         localStorage.setItem('bestmetall-lang', this.currentLang);
         this.applyLanguage(this.currentLang);
         this.updateToggleUI();
@@ -48,7 +53,7 @@ const LanguageManager = {
       const other = toggle.querySelector('.lang-toggle__other');
       if (current && other) {
         current.textContent = this.currentLang.toUpperCase();
-        other.textContent = this.currentLang === 'ru' ? 'EN' : 'RU';
+        other.textContent = this.currentLang === 'ru' ? 'UZ' : 'RU';
       }
     }
   },
@@ -188,8 +193,13 @@ const FormHandler = {
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
 
+        const isUz = (document.documentElement.lang || 'ru') === 'uz';
+
         if (!name || !phone) {
-          this.showMessage('Пожалуйста, заполните все обязательные поля', 'error');
+          this.showMessage(
+            isUz ? 'Iltimos, barcha majburiy maydonlarni to\'ldiring' : 'Пожалуйста, заполните все обязательные поля',
+            'error'
+          );
           return;
         }
 
@@ -197,10 +207,13 @@ const FormHandler = {
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Отправка...';
+        submitBtn.textContent = isUz ? 'Yuborilmoqda...' : 'Отправка...';
 
         setTimeout(() => {
-          this.showMessage('Спасибо! Мы свяжемся с вами в ближайшее время.', 'success');
+          this.showMessage(
+            isUz ? 'Rahmat! Tez orada siz bilan bog\'lanamiz.' : 'Спасибо! Мы свяжемся с вами в ближайшее время.',
+            'success'
+          );
           form.reset();
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
@@ -240,47 +253,81 @@ const FormHandler = {
   }
 };
 
-// Spark effect for hero
+// Spark effect for hero — welding-style particles from a focal point
 const SparkEffect = {
   init() {
     const container = document.getElementById('sparks');
     if (!container) return;
 
-    const createSpark = () => {
-      const spark = document.createElement('div');
-      spark.className = 'spark';
+    // Respect reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
 
-      // Random position
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-
-      spark.style.left = `${x}%`;
-      spark.style.top = `${y}%`;
-
-      container.appendChild(spark);
-
-      // Animate
-      gsap.fromTo(spark,
-        {
-          opacity: 0,
-          scale: 0,
-          x: 0,
-          y: 0
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          x: (Math.random() - 0.5) * 100,
-          y: (Math.random() - 0.5) * 100,
-          duration: 1 + Math.random(),
-          ease: 'power2.out',
-          onComplete: () => spark.remove()
-        }
-      );
+    // Focal point: anchor near the hero weld-line if present, else center bottom
+    const getOrigin = () => {
+      const rect = container.getBoundingClientRect();
+      const weldEl = container.parentElement?.querySelector('.hero__content .weld-line');
+      if (weldEl) {
+        const wRect = weldEl.getBoundingClientRect();
+        return {
+          x: ((wRect.left + wRect.width / 2 - rect.left) / rect.width) * 100,
+          y: ((wRect.top + wRect.height / 2 - rect.top) / rect.height) * 100
+        };
+      }
+      return { x: 50, y: 65 };
     };
 
-    // Create sparks periodically
-    setInterval(createSpark, 300);
+    const createSpark = () => {
+      const origin = getOrigin();
+      const burstSize = 1 + Math.floor(Math.random() * 3); // 1-3 per tick
+
+      for (let i = 0; i < burstSize; i++) {
+        const spark = document.createElement('div');
+        const hot = Math.random() < 0.4;
+        spark.className = hot ? 'spark spark--hot' : 'spark';
+
+        // Tiny jitter around origin
+        const jitterX = (Math.random() - 0.5) * 4;
+        const jitterY = (Math.random() - 0.5) * 2;
+        spark.style.left = `${origin.x + jitterX}%`;
+        spark.style.top = `${origin.y + jitterY}%`;
+
+        container.appendChild(spark);
+
+        // Direction: mostly upward in a cone, sometimes sideways
+        const angle = (-Math.PI / 2) + (Math.random() - 0.5) * 1.3; // -90deg ± ~37deg
+        const distance = 60 + Math.random() * 140;
+        const endX = Math.cos(angle) * distance;
+        const endY = Math.sin(angle) * distance;
+        const midX = endX * 0.5 + (Math.random() - 0.5) * 10;
+        const midY = endY * 0.4;
+
+        gsap.fromTo(spark,
+          {
+            opacity: 0,
+            scale: 0.4,
+            x: 0,
+            y: 0
+          },
+          {
+            keyframes: [
+              { opacity: 1, scale: 1, x: midX, y: midY, duration: 0.25, ease: 'power2.out' },
+              { opacity: 0, scale: 0.2, x: endX, y: endY + 40, duration: 0.7 + Math.random() * 0.4, ease: 'power1.in' }
+            ],
+            onComplete: () => spark.remove()
+          }
+        );
+      }
+    };
+
+    // Periodic bursts — slightly irregular timing for natural feel
+    const tick = () => {
+      createSpark();
+      const next = 110 + Math.random() * 220;
+      setTimeout(tick, next);
+    };
+    tick();
   }
 };
 

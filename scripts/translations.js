@@ -1,6 +1,6 @@
 /**
  * BEST METALL - TRANSLATIONS
- * Bilingual Support (Russian / English)
+ * Bilingual Support (Russian / Uzbek - Latin script)
  */
 
 const translations = {
@@ -9,9 +9,18 @@ const translations = {
     nav: {
       about: 'О компании',
       services: 'Услуги',
+      equipment: 'Оборудование',
       process: 'Процесс',
       projects: 'Проекты',
       contact: 'Контакты'
+    },
+
+    // Top tech bar
+    techbar: {
+      est: 'Основано 2008',
+      location: 'Наманган · Узбекистан',
+      phone: '+998 90 123 45 67',
+      hours: 'Пн – Сб · 09:00 – 18:00'
     },
 
     // Hero Section
@@ -22,7 +31,7 @@ const translations = {
         line2: 'ТОЧНОСТЬ',
         line3: 'КАЧЕСТВО'
       },
-      subtitle: 'Премиальные металлоконструкции для вашего бизнеса и дома. Лазерная резка, сварка, порошковая покраска.',
+      subtitle: 'Премиальные металлоконструкции для бизнеса и дома. Лазерная резка, сварка, порошковая покраска — от чертежа до монтажа.',
       cta: {
         primary: 'Обсудить проект',
         secondary: 'Наши работы'
@@ -41,6 +50,8 @@ const translations = {
       title: 'Лидер металлообработки в Намангане',
       text: 'ООО "Best Metall" — ведущая компания по производству металлоконструкций в Узбекистане. С 2008 года мы создаём надёжные решения для промышленности, строительства и частных клиентов.',
       expText: 'лет опыта',
+      blueprintRef: 'DRG-001 · STAIRCASE TYPE-A',
+      blueprintScale: 'SCALE 1:50',
       features: {
         experience: {
           title: '17+ лет опыта',
@@ -98,7 +109,64 @@ const translations = {
         welding: 'Сварочные работы',
         coating: 'Порошковая покраска'
       },
-      link: 'Подробнее'
+      link: 'Подробнее →'
+    },
+
+    // Equipment Section
+    equipment: {
+      label: 'Оборудование',
+      title: 'Наш цех',
+      subtitle: 'Производственные мощности и парк станков, на котором мы работаем каждый день.',
+      items: {
+        laser: {
+          title: 'Лазерный резак',
+          model: 'CO₂ · 3 кВт · стол 1500×3000 мм',
+          specs: {
+            precisionLabel: 'Точность',
+            precisionValue: '±0.1 мм',
+            thicknessLabel: 'Толщина',
+            thicknessValue: 'до 20 мм',
+            materialLabel: 'Материал',
+            materialValue: 'сталь / нерж'
+          }
+        },
+        cnc: {
+          title: 'ЧПУ обработка',
+          model: '5 осей · допуск ±0.01 мм',
+          specs: {
+            areaLabel: 'Рабочее поле',
+            areaValue: '600×400×500 мм',
+            toolLabel: 'Смена инструмента',
+            toolValue: 'автоматическая',
+            materialLabel: 'Материал',
+            materialValue: 'сталь / алюминий'
+          }
+        },
+        welder: {
+          title: 'Сварка TIG / MIG',
+          model: 'Multi-process · 400 А',
+          specs: {
+            thicknessLabel: 'Толщина',
+            thicknessValue: 'до 12 мм',
+            materialLabel: 'Материал',
+            materialValue: 'сталь / нерж / алюминий',
+            certLabel: 'Сертификация',
+            certValue: 'сварщики 5 разряда'
+          }
+        },
+        coating: {
+          title: 'Порошковая покраска',
+          model: 'Промышленная камера · 200°C',
+          specs: {
+            paletteLabel: 'Палитра',
+            paletteValue: 'RAL полный спектр',
+            antiLabel: 'Защита',
+            antiValue: 'антикоррозийная',
+            sizeLabel: 'Размер детали',
+            sizeValue: 'до 2 м'
+          }
+        }
+      }
     },
 
     // Process Section
@@ -107,27 +175,22 @@ const translations = {
       title: 'Как мы работаем',
       steps: {
         design: {
-          number: '01',
           title: 'Проектирование',
           desc: 'Разрабатываем детальный проект с учётом всех ваших требований и пожеланий.'
         },
         engineering: {
-          number: '02',
           title: 'Инженеринг',
           desc: 'Создаём рабочую документацию и проводим инженерные расчёты прочности.'
         },
         fabrication: {
-          number: '03',
           title: 'Производство',
           desc: 'Изготавливаем детали на современном оборудовании с точностью до миллиметра.'
         },
         assembly: {
-          number: '04',
           title: 'Сборка',
           desc: 'Собираем конструкции на производстве, проводим контроль качества.'
         },
         installation: {
-          number: '05',
           title: 'Монтаж',
           desc: 'Доставляем и устанавливаем готовые конструкции на вашем объекте.'
         }
@@ -136,46 +199,80 @@ const translations = {
 
     // Projects Section
     projects: {
-      label: 'Проекты',
-      title: 'Наши работы',
+      label: 'Портфолио',
+      title: 'Реализованные проекты',
+      specs: {
+        year: 'Год',
+        location: 'Локация',
+        material: 'Материал',
+        area: 'Площадь',
+        client: 'Заказчик'
+      },
       items: {
-        project1: {
-          category: 'Ограждения',
-          title: 'Нержавеющие перила для ТЦ',
-          desc: 'Изготовление и установка стеклянных ограждений с нержавеющими поручнями'
-        },
-        project2: {
+        stairs: {
           category: 'Лестницы',
-          title: 'Винтовая лестница в частном доме',
-          desc: 'Металлическая винтовая лестница с деревянными ступенями'
+          title: 'Винтовая лестница для частного дома',
+          year: '2024',
+          location: 'Наманган',
+          material: 'Нерж. сталь · стекло'
         },
-        project3: {
+        railings: {
+          category: 'Ограждения',
+          title: 'Перила для торгового центра',
+          year: '2023',
+          location: 'Фергана',
+          material: 'Нерж. сталь'
+        },
+        loft: {
           category: 'Мебель',
-          title: 'Офис в стиле ЛОФТ',
-          desc: 'Комплексная меблировка офисного помещения в индустриальном стиле'
+          title: 'Офисная мебель ЛОФТ',
+          year: '2024',
+          location: 'Ташкент',
+          material: 'Сталь · дуб'
         },
-        project4: {
+        gates: {
+          category: 'Ворота',
+          title: 'Автоматические ворота',
+          year: '2023',
+          location: 'Наманган',
+          material: 'Сталь · порошок'
+        },
+        structure: {
           category: 'Металлоконструкции',
-          title: 'Ангар для производства',
-          desc: 'Быстровозводимый ангар размером 30x60 метров'
+          title: 'Несущий каркас склада 2000 м²',
+          year: '2024',
+          location: 'Наманган',
+          area: '2000 м²'
         }
       }
     },
 
+    // Marquee
+    marquee: {
+      laser: 'ЛАЗЕРНАЯ РЕЗКА',
+      cnc: 'CNC ОБРАБОТКА',
+      weld: 'TIG / MIG СВАРКА',
+      coating: 'ПОРОШКОВАЯ ПОКРАСКА',
+      bending: 'ГИБКА ЛИСТОВ',
+      design: 'ПРОЕКТИРОВАНИЕ'
+    },
+
     // Metrics Section
     metrics: {
+      label: 'Цифры',
+      title: 'В цифрах',
       clients: 'Довольных клиентов',
       years: 'Лет на рынке',
       projects: 'Выполненных проектов',
-      guarantee: 'Гарантия качества',
       support: 'Поддержка',
       precision: 'Точность'
     },
 
     // CTA Section
     cta: {
-      title: 'Давайте создадим что-то надёжное',
-      subtitle: 'Расскажите о вашем проекте, и мы подготовим индивидуальное предложение',
+      label: 'Запуск проекта',
+      title: 'Создадим что-то вечное',
+      subtitle: 'Расскажите о вашем проекте, и мы подготовим индивидуальное предложение в течение 24 часов.',
       primary: 'Начать проект',
       secondary: 'Позвонить'
     },
@@ -185,230 +282,353 @@ const translations = {
       label: 'Контакты',
       title: 'Давайте работать вместе',
       text: 'Оставьте заявку или свяжитесь с нами напрямую. Мы ответим в течение 24 часов.',
+      formLabel: 'Форма заявки',
+      formTitle: 'Оставить заявку',
       form: {
         name: 'Ваше имя',
         phone: 'Телефон',
         message: 'Сообщение',
         submit: 'Отправить заявку'
-      }
+      },
+      hours: {
+        label: 'Режим работы',
+        weekdays: 'Пн – Пт',
+        weekdaysTime: '09:00 – 18:00',
+        saturday: 'Сб',
+        saturdayTime: '09:00 – 14:00',
+        sunday: 'Вс',
+        sundayValue: 'Выходной'
+      },
+      location: {
+        label: 'Локация',
+        value: 'Наманган, Узбекистан',
+        address: 'г. Наманган, промзона Сергели',
+        coords: '41.0011° N · 71.6726° E · Наманган'
+      },
+      response: 'Ответ в течение 24 часов'
     },
 
     // Footer
     footer: {
       tagline: 'Премиальные металлоконструкции с 2008 года',
-      columns: {
-        navigation: 'Навигация',
-        services: 'Услуги',
-        contact: 'Контакты'
-      },
       address: 'г. Наманган, промзона Сергели',
-      copyright: '© 2025 ООО "Best Metall". Все права защищены.',
+      copyright: '© 2026 ООО "Best Metall". Все права защищены.',
       rights: 'Все права защищены.',
       credits: 'Сделано с огнём и сталью'
     }
   },
 
-  en: {
+  uz: {
     // Navigation
     nav: {
-      about: 'About',
-      services: 'Services',
-      process: 'Process',
-      projects: 'Projects',
-      contact: 'Contact'
+      about: 'Kompaniya haqida',
+      services: 'Xizmatlar',
+      equipment: 'Uskunalar',
+      process: 'Jarayon',
+      projects: 'Loyihalar',
+      contact: 'Bog\'lanish'
+    },
+
+    // Top tech bar
+    techbar: {
+      est: '2008 yilda asos solingan',
+      location: 'Namangan · O\'zbekiston',
+      phone: '+998 90 123 45 67',
+      hours: 'Du – Sh · 09:00 – 18:00'
     },
 
     // Hero Section
     hero: {
-      label: 'Metal Construction Since 2008',
+      label: '2008 yildan beri metall konstruksiyalar',
       title: {
-        line1: 'STEEL',
-        line2: 'PRECISION',
-        line3: 'QUALITY'
+        line1: 'PO\'LAT',
+        line2: 'ANIQLIK',
+        line3: 'SIFAT'
       },
-      subtitle: 'Premium metal structures for your business and home. Laser cutting, welding, powder coating.',
+      subtitle: 'Biznes va uy uchun yuqori sifatli metall konstruksiyalar. Lazer kesish, payvandlash, kukunli bo\'yash — chizmadan o\'rnatishgacha.',
       cta: {
-        primary: 'Discuss Project',
-        secondary: 'Our Work'
+        primary: 'Loyihani muhokama qilish',
+        secondary: 'Bizning ishlarimiz'
       },
       stats: {
-        clients: 'Clients',
-        years: 'Years Experience',
-        projects: 'Projects',
-        quality: 'Quality'
+        clients: 'Mijozlar',
+        years: 'Yillik tajriba',
+        projects: 'Loyihalar',
+        quality: 'Sifat'
       }
     },
 
     // About Section
     about: {
-      label: 'About Us',
-      title: 'Leading Metal Fabrication in Namangan',
-      text: 'LLC "Best Metall" is a leading metal construction company in Uzbekistan. Since 2008, we have been creating reliable solutions for industry, construction and private clients.',
-      expText: 'years of experience',
+      label: 'Kompaniya haqida',
+      title: 'Namangandagi metallga ishlov berish yetakchisi',
+      text: '"Best Metall" MChJ — O\'zbekistondagi yetakchi metall konstruksiyalar ishlab chiqaruvchi kompaniya. 2008 yildan beri sanoat, qurilish va xususiy mijozlar uchun ishonchli yechimlar yaratib kelmoqdamiz.',
+      expText: 'yillik tajriba',
+      blueprintRef: 'DRG-001 · STAIRCASE TYPE-A',
+      blueprintScale: 'SCALE 1:50',
       features: {
         experience: {
-          title: '17+ Years Experience',
-          desc: 'Over 17 years in the metal construction market'
+          title: '17+ yillik tajriba',
+          desc: 'Metall konstruksiyalar bozorida 17 yildan ortiq tajriba'
         },
         equipment: {
-          title: 'Modern Equipment',
-          desc: 'Laser cutting, CNC machines, powder coating'
+          title: 'Zamonaviy uskunalar',
+          desc: 'Lazer kesish, CNC dastgohlar, kukunli bo\'yash'
         },
         quality: {
-          title: 'Quality Guarantee',
-          desc: '100% quality control at all production stages'
+          title: 'Sifat kafolati',
+          desc: 'Ishlab chiqarishning barcha bosqichlarida 100% nazorat'
         },
         deadline: {
-          title: 'On Time Delivery',
-          desc: 'We complete work on time without delays'
+          title: 'Aniq muddat',
+          desc: 'Ishni kechikishlarsiz, o\'z vaqtida bajaramiz'
         }
       }
     },
 
     // Services Section
     services: {
-      label: 'Services',
-      title: 'Our Services',
+      label: 'Xizmatlar',
+      title: 'Bizning xizmatlarimiz',
       items: {
         railings: {
-          title: 'Stainless Steel Railings',
-          desc: 'Handrails, railings and fences made of stainless steel for stairs, balconies and terraces.'
+          title: 'Zanglamaydigan panjaralar',
+          desc: 'Zinapoyalar, balkonlar va terassalar uchun zanglamaydigan po\'latdan panjaralar va tutqichlar.'
         },
         stairs: {
-          title: 'Stairs and Flights',
-          desc: 'Metal stairs of any complexity: spiral, straight flight, on a single stringer.'
+          title: 'Zinapoyalar va marshlar',
+          desc: 'Har qanday murakkablikdagi metall zinapoyalar: vintli, marshli, monokosourli.'
         },
         loft: {
-          title: 'Loft Furniture',
-          desc: 'Tables, chairs, shelves and other loft style furniture for home and office.'
+          title: 'LOFT mebel',
+          desc: 'Uy va ofis uchun loft uslubidagi stol, stul, javon va boshqa mebellar.'
         },
         kitchen: {
-          title: 'Kitchen Furniture',
-          desc: 'Frames and fittings for kitchen furniture made of metal.'
+          title: 'Oshxona mebellari',
+          desc: 'Metalldan tayyorlangan oshxona mebellari uchun karkas va butlovchi qismlar.'
         },
         doors: {
-          title: 'Doors and Gates',
-          desc: 'Metal doors, gates, wickets and fences with powder coating.'
+          title: 'Eshik va darvozalar',
+          desc: 'Kukunli qoplamali metall eshiklar, darvozalar, kichik darvozalar va panjaralar.'
         },
         structures: {
-          title: 'Metal Structures',
-          desc: 'Load-bearing structures, hangars, canopies and building frames.'
+          title: 'Metall konstruksiyalar',
+          desc: 'Yuk ko\'taruvchi konstruksiyalar, angarlar, soyabonlar va bino karkaslari.'
         }
       },
       additional: {
-        label: 'Additional Services',
-        laser: 'Laser Cutting',
-        bending: 'Sheet Metal Bending',
-        welding: 'Welding Services',
-        coating: 'Powder Coating'
+        label: 'Qo\'shimcha xizmatlar',
+        laser: 'Lazer kesish',
+        bending: 'Listli metallni egish',
+        welding: 'Payvandlash ishlari',
+        coating: 'Kukunli bo\'yash'
       },
-      link: 'Learn More'
+      link: 'Batafsil →'
+    },
+
+    // Equipment Section
+    equipment: {
+      label: 'Uskunalar',
+      title: 'Ustaxonamiz',
+      subtitle: 'Har kuni ishlaydigan ishlab chiqarish quvvati va dastgohlar parki.',
+      items: {
+        laser: {
+          title: 'Lazer kesgich',
+          model: 'CO₂ · 3 kVt · stol 1500×3000 mm',
+          specs: {
+            precisionLabel: 'Aniqlik',
+            precisionValue: '±0.1 mm',
+            thicknessLabel: 'Qalinligi',
+            thicknessValue: '20 mm gacha',
+            materialLabel: 'Material',
+            materialValue: 'po\'lat / zanglamas'
+          }
+        },
+        cnc: {
+          title: 'CNC ishlov berish',
+          model: '5 o\'q · ruxsat ±0.01 mm',
+          specs: {
+            areaLabel: 'Ish maydoni',
+            areaValue: '600×400×500 mm',
+            toolLabel: 'Asbob almashinuvi',
+            toolValue: 'avtomatik',
+            materialLabel: 'Material',
+            materialValue: 'po\'lat / alyuminiy'
+          }
+        },
+        welder: {
+          title: 'TIG / MIG payvandlash',
+          model: 'Multi-process · 400 A',
+          specs: {
+            thicknessLabel: 'Qalinligi',
+            thicknessValue: '12 mm gacha',
+            materialLabel: 'Material',
+            materialValue: 'po\'lat / zanglamas / alyuminiy',
+            certLabel: 'Sertifikat',
+            certValue: '5-razryad payvandchilar'
+          }
+        },
+        coating: {
+          title: 'Kukunli bo\'yash',
+          model: 'Sanoat kamerasi · 200°C',
+          specs: {
+            paletteLabel: 'Palitra',
+            paletteValue: 'RAL to\'liq spektr',
+            antiLabel: 'Himoya',
+            antiValue: 'zanglashga qarshi',
+            sizeLabel: 'Detal o\'lchami',
+            sizeValue: '2 m gacha'
+          }
+        }
+      }
     },
 
     // Process Section
     process: {
-      label: 'Process',
-      title: 'How We Work',
+      label: 'Jarayon',
+      title: 'Qanday ishlaymiz',
       steps: {
         design: {
-          number: '01',
-          title: 'Design',
-          desc: 'We develop a detailed project taking into account all your requirements and wishes.'
+          title: 'Loyihalash',
+          desc: 'Sizning barcha talab va istaklaringizni hisobga olgan holda batafsil loyiha ishlab chiqamiz.'
         },
         engineering: {
-          number: '02',
-          title: 'Engineering',
-          desc: 'We create working documentation and carry out strength engineering calculations.'
+          title: 'Muhandislik',
+          desc: 'Ishchi hujjatlarni tayyorlaymiz va mustahkamlik bo\'yicha muhandislik hisob-kitoblarini bajaramiz.'
         },
         fabrication: {
-          number: '03',
-          title: 'Fabrication',
-          desc: 'We manufacture parts on modern equipment with millimeter precision.'
+          title: 'Ishlab chiqarish',
+          desc: 'Zamonaviy uskunalarda detallarni millimetr aniqligida tayyorlaymiz.'
         },
         assembly: {
-          number: '04',
-          title: 'Assembly',
-          desc: 'We assemble structures at the factory and conduct quality control.'
+          title: 'Yig\'ish',
+          desc: 'Konstruksiyalarni ishlab chiqarishda yig\'amiz va sifat nazoratidan o\'tkazamiz.'
         },
         installation: {
-          number: '05',
-          title: 'Installation',
-          desc: 'We deliver and install finished structures at your facility.'
+          title: 'O\'rnatish',
+          desc: 'Tayyor konstruksiyalarni sizning ob\'ektingizga yetkazib beramiz va o\'rnatamiz.'
         }
       }
     },
 
     // Projects Section
     projects: {
-      label: 'Projects',
-      title: 'Our Work',
+      label: 'Portfolio',
+      title: 'Amalga oshirilgan loyihalar',
+      specs: {
+        year: 'Yil',
+        location: 'Manzil',
+        material: 'Material',
+        area: 'Maydoni',
+        client: 'Buyurtmachi'
+      },
       items: {
-        project1: {
-          category: 'Railings',
-          title: 'Stainless Railings for Mall',
-          desc: 'Manufacturing and installation of glass railings with stainless handrails'
+        stairs: {
+          category: 'Zinapoyalar',
+          title: 'Xususiy uy uchun vintli zinapoya',
+          year: '2024',
+          location: 'Namangan',
+          material: 'Zanglamas po\'lat · shisha'
         },
-        project2: {
-          category: 'Stairs',
-          title: 'Spiral Staircase in Private House',
-          desc: 'Metal spiral staircase with wooden steps'
+        railings: {
+          category: 'Panjaralar',
+          title: 'Savdo markazi uchun panjaralar',
+          year: '2023',
+          location: 'Farg\'ona',
+          material: 'Zanglamas po\'lat'
         },
-        project3: {
-          category: 'Furniture',
-          title: 'Loft Style Office',
-          desc: 'Comprehensive furnishing of office space in industrial style'
+        loft: {
+          category: 'Mebel',
+          title: 'LOFT uslubidagi ofis mebeli',
+          year: '2024',
+          location: 'Toshkent',
+          material: 'Po\'lat · eman'
         },
-        project4: {
-          category: 'Structures',
-          title: 'Production Hangar',
-          desc: 'Quick-assembly hangar measuring 30x60 meters'
+        gates: {
+          category: 'Darvozalar',
+          title: 'Avtomatik darvozalar',
+          year: '2023',
+          location: 'Namangan',
+          material: 'Po\'lat · kukun'
+        },
+        structure: {
+          category: 'Metall konstruksiyalar',
+          title: '2000 m² ombor uchun yuk karkasi',
+          year: '2024',
+          location: 'Namangan',
+          area: '2000 m²'
         }
       }
     },
 
+    // Marquee
+    marquee: {
+      laser: 'LAZER KESISH',
+      cnc: 'CNC ISHLOV',
+      weld: 'TIG / MIG PAYVANDLASH',
+      coating: 'KUKUNLI BO\'YASH',
+      bending: 'LIST EGISH',
+      design: 'LOYIHALASH'
+    },
+
     // Metrics Section
     metrics: {
-      clients: 'Happy Clients',
-      years: 'Years on Market',
-      projects: 'Completed Projects',
-      guarantee: 'Quality Guarantee',
-      support: 'Support',
-      precision: 'Precision'
+      label: 'Raqamlar',
+      title: 'Raqamlarda',
+      clients: 'Mamnun mijozlar',
+      years: 'Bozorda yillar',
+      projects: 'Bajarilgan loyihalar',
+      support: 'Yordam',
+      precision: 'Aniqlik'
     },
 
     // CTA Section
     cta: {
-      title: "Let's Build Something That Lasts",
-      subtitle: 'Tell us about your project and we will prepare an individual proposal',
-      primary: 'Start Project',
-      secondary: 'Call Us'
+      label: 'Loyiha boshlash',
+      title: 'Abadiy narsa yarataylik',
+      subtitle: 'Loyihangiz haqida gapirib bering, biz 24 soat ichida shaxsiy taklif tayyorlaymiz.',
+      primary: 'Loyihani boshlash',
+      secondary: 'Qo\'ng\'iroq qilish'
     },
 
     // Contact Section
     contact: {
-      label: 'Contact',
-      title: "Let's Work Together",
-      text: 'Leave a request or contact us directly. We will respond within 24 hours.',
+      label: 'Aloqalar',
+      title: 'Birga ishlaymiz',
+      text: 'Ariza qoldiring yoki biz bilan to\'g\'ridan-to\'g\'ri bog\'laning. 24 soat ichida javob beramiz.',
+      formLabel: 'Ariza shakli',
+      formTitle: 'Ariza qoldirish',
       form: {
-        name: 'Your Name',
-        phone: 'Phone',
-        message: 'Message',
-        submit: 'Send Request'
-      }
+        name: 'Ismingiz',
+        phone: 'Telefon',
+        message: 'Xabar',
+        submit: 'Ariza yuborish'
+      },
+      hours: {
+        label: 'Ish vaqti',
+        weekdays: 'Du – Ju',
+        weekdaysTime: '09:00 – 18:00',
+        saturday: 'Sh',
+        saturdayTime: '09:00 – 14:00',
+        sunday: 'Ya',
+        sundayValue: 'Dam olish kuni'
+      },
+      location: {
+        label: 'Manzil',
+        value: 'Namangan, O\'zbekiston',
+        address: 'Namangan sh., Sergeli sanoat zonasi',
+        coords: '41.0011° N · 71.6726° E · Namangan'
+      },
+      response: '24 soat ichida javob'
     },
 
     // Footer
     footer: {
-      tagline: 'Premium metal structures since 2008',
-      columns: {
-        navigation: 'Navigation',
-        services: 'Services',
-        contact: 'Contact'
-      },
-      address: 'Namangan, Sergeli Industrial Zone',
-      copyright: '© 2025 LLC "Best Metall". All rights reserved.',
-      rights: 'All rights reserved.',
-      credits: 'Made with fire and steel'
+      tagline: '2008 yildan beri yuqori sifatli metall konstruksiyalar',
+      address: 'Namangan sh., Sergeli sanoat zonasi',
+      copyright: '© 2026 "Best Metall" MChJ. Barcha huquqlar himoyalangan.',
+      rights: 'Barcha huquqlar himoyalangan.',
+      credits: 'Olov va po\'lat bilan yaratilgan'
     }
   }
 };

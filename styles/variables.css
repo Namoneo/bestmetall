@@ -1,6 +1,6 @@
 /* ============================================
    BEST METALL - CSS VARIABLES
-   "Forged Precision" Design System
+   "Forged Precision v2" Design System
    ============================================ */
 
 :root {
@@ -8,27 +8,50 @@
   --bg-primary: #0A0B0D;
   --bg-secondary: #111317;
   --bg-elevated: #171A1F;
-  
+  --bg-deep: #06070A;
+
   /* Steel Palette */
   --steel-dark: #2A2F36;
   --steel: #59616B;
   --steel-light: #AAB3BE;
   --chrome: #D8DEE5;
-  
+
   /* Accent Colors - Fire & Gold */
   --accent-fire: #FF6B2C;
   --accent-hot: #FF8A3D;
   --accent-gold: #D9A441;
-  
+
+  /* Steel Blue (cool metal counterpoint to fire orange) */
+  --steel-blue: #4A6FA5;
+  --steel-blue-dark: #2D4D70;
+  --steel-blue-light: #6B8EBE;
+
+  /* Forge palette extensions */
+  --forge-yellow: #FFC647;
+  --forge-red: #C8421A;
+  --forge-glow: rgba(255, 107, 44, 0.4);
+  --forge-glow-strong: rgba(255, 107, 44, 0.65);
+
+  /* Blueprint */
+  --blueprint-bg: #0D1419;
+  --blueprint-line: #2A4A5C;
+  --blueprint-accent: #4A8FBF;
+
+  /* Brushed metal gradients */
+  --brushed-steel: linear-gradient(135deg, #1A1F26 0%, #252A31 20%, #1A1F26 40%, #252A31 60%, #1A1F26 80%, #252A31 100%);
+  --brushed-steel-horizontal: linear-gradient(90deg, #171A1F 0%, #20252C 50%, #171A1F 100%);
+  --brushed-steel-soft: linear-gradient(135deg, #14181D 0%, #1C2128 50%, #14181D 100%);
+
   /* Text Colors */
   --text-primary: #F5F7FA;
   --text-secondary: #9AA3AE;
   --text-muted: #69717C;
-  
+
   /* Typography */
   --font-heading: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+
   /* Font Sizes */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
@@ -39,7 +62,7 @@
   --text-3xl: clamp(3rem, 2rem + 5vw, 6rem);
   --text-4xl: clamp(4rem, 3rem + 5vw, 8rem);
   --text-hero: clamp(5rem, 4rem + 8vw, 12rem);
-  
+
   /* Spacing */
   --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
   --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
@@ -48,26 +71,27 @@
   --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);
   --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
   --space-3xl: clamp(4rem, 3rem + 5vw, 8rem);
-  
+
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slower: 800ms cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 40px rgba(255, 107, 44, 0.3);
   --shadow-glow-lg: 0 0 60px rgba(255, 107, 44, 0.4);
-  
+  --shadow-glow-xl: 0 0 80px rgba(255, 107, 44, 0.55);
+
   /* Borders */
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-xl: 16px;
-  
+
   /* Z-index Scale */
   --z-background: -10;
   --z-base: 0;

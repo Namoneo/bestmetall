@@ -8,33 +8,42 @@ window.Animations = {
     this.initHeroAnimations();
     this.initSectionReveals();
     this.initParallax();
-    this.initProcessHorizontalScroll();
+    this.initProcessTimeline();
     this.initServiceCards();
     this.initProjectCards();
     this.initMetricsAnimation();
+    this.initEquipment();
+    this.initMarquee();
   },
 
   // Hero entrance animations
   initHeroAnimations() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    
-    // Label
-    tl.fromTo('.hero__label', 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8 }
+
+    // Tech bar badges
+    tl.fromTo('.hero__tech-bar',
+      { opacity: 0, y: -10 },
+      { opacity: 1, y: 0, duration: 0.6 }
     );
-    
-    // Title lines with SplitType effect
+
+    // Label (legacy)
+    tl.fromTo('.hero__label',
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      '-=0.2'
+    );
+
+    // Title lines
     const titleLines = document.querySelectorAll('.hero__title-line');
-    titleLines.forEach((line, i) => {
+    titleLines.forEach((line) => {
       tl.fromTo(line,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
           rotateX: -45
         },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           y: 0,
           rotateX: 0,
           duration: 1,
@@ -43,35 +52,42 @@ window.Animations = {
         `-=${0.6}`
       );
     });
-    
+
+    // Weld line under title
+    tl.fromTo('.hero__content .weld-line',
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.8, ease: 'power3.inOut', transformOrigin: 'center center' },
+      '-=0.3'
+    );
+
     // Subtitle
     tl.fromTo('.hero__subtitle',
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.8 },
       '-=0.4'
     );
-    
+
     // Buttons
     tl.fromTo('.hero__actions .btn',
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 },
       '-=0.4'
     );
-    
+
     // Scroll indicator
     tl.fromTo('.hero__scroll',
       { opacity: 0 },
       { opacity: 1, duration: 0.6 },
       '-=0.2'
     );
-    
+
     // Stats
     tl.fromTo('.hero__stat',
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 },
       '-=0.4'
     );
-    
+
     // Hero parallax on scroll
     gsap.to('.hero__title', {
       scrollTrigger: {
@@ -83,7 +99,7 @@ window.Animations = {
       y: 200,
       opacity: 0
     });
-    
+
     gsap.to('.hero__bg', {
       scrollTrigger: {
         trigger: '.hero',
@@ -97,7 +113,7 @@ window.Animations = {
 
   // Section reveal animations
   initSectionReveals() {
-    // About section
+    // About visual
     gsap.fromTo('.about__visual',
       { opacity: 0, x: -50 },
       {
@@ -112,7 +128,7 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
-    
+
     gsap.fromTo('.about__content',
       { opacity: 0, x: 50 },
       {
@@ -127,7 +143,7 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
-    
+
     gsap.fromTo('.about__feature',
       { opacity: 0, y: 30 },
       {
@@ -143,7 +159,7 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
-    
+
     // Section labels and titles
     document.querySelectorAll('.section__label, .section__title').forEach(el => {
       gsap.fromTo(el,
@@ -165,18 +181,20 @@ window.Animations = {
 
   // Parallax effects
   initParallax() {
-    // Blueprint parallax in about
-    gsap.to('.about__blueprint', {
-      scrollTrigger: {
-        trigger: '.about',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1
-      },
-      rotation: 15,
-      y: -50
-    });
-    
+    // Blueprint parallax in about (target the wrap not the svg)
+    const aboutBlueprint = document.querySelector('.about__blueprint, .about__blueprint-wrap');
+    if (aboutBlueprint) {
+      gsap.to(aboutBlueprint, {
+        scrollTrigger: {
+          trigger: '.about',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: -40
+      });
+    }
+
     // Metrics blueprint
     document.querySelectorAll('.metric-card__blueprint').forEach((bp, i) => {
       gsap.to(bp, {
@@ -186,66 +204,96 @@ window.Animations = {
           end: 'bottom top',
           scrub: 1
         },
-        rotation: 10 + (i * 5),
-        scale: 1.1
+        rotation: 10 + (i * 5)
       });
     });
   },
 
-  // Horizontal scroll process section
-  initProcessHorizontalScroll() {
-    const wrapper = document.getElementById('processWrapper');
-    const track = document.getElementById('processTrack');
-    const progress = document.getElementById('processProgress');
-    
-    if (!wrapper || !track) return;
-    
-    const steps = track.querySelectorAll('.process__step');
-    const totalWidth = track.scrollWidth - window.innerWidth;
-    
-    // Horizontal scroll animation
-    const scrollTween = gsap.to(track, {
-      x: -totalWidth,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: wrapper,
-        start: 'top top',
-        end: () => `+=${totalWidth}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          if (progress) {
-            progress.style.width = `${self.progress * 100}%`;
-          }
-        }
-      }
-    });
-    
-    // Step animations
+  // Vertical timeline process section (replaces horizontal scroll)
+  initProcessTimeline() {
+    const timeline = document.querySelector('.process__timeline');
+    if (!timeline) return;
+
+    const steps = timeline.querySelectorAll('.process__step');
+
     steps.forEach((step, i) => {
-      gsap.fromTo(step.querySelector('.process__step-number'),
-        { scale: 0.8, opacity: 0.5 },
+      const marker = step.querySelector('.process__step-marker');
+      const content = step.querySelector('.process__step-content');
+
+      gsap.fromTo(step,
+        { opacity: 0, y: 40 },
         {
           scrollTrigger: {
             trigger: step,
-            containerAnimation: scrollTween,
-            start: 'left center',
-            end: 'right center',
-            scrub: true
+            start: 'top 85%',
+            once: true
           },
-          scale: 1,
-          opacity: 1
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out'
         }
       );
+
+      if (marker) {
+        gsap.fromTo(marker,
+          { scale: 0.4, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 85%',
+              once: true
+            },
+            scale: 1,
+            opacity: 1,
+            duration: 0.7,
+            delay: 0.1,
+            ease: 'back.out(1.6)'
+          }
+        );
+      }
+
+      if (content) {
+        gsap.fromTo(content,
+          { x: 24, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 85%',
+              once: true
+            },
+            x: 0,
+            opacity: 1,
+            duration: 0.7,
+            delay: 0.15,
+            ease: 'power3.out'
+          }
+        );
+      }
     });
+
+    // Animate the connecting vertical line itself
+    const line = document.querySelector('.process__line');
+    if (line) {
+      gsap.fromTo(line,
+        { scaleY: 0, transformOrigin: 'top center' },
+        {
+          scrollTrigger: {
+            trigger: timeline,
+            start: 'top 70%',
+            end: 'bottom 70%',
+            scrub: 0.5
+          },
+          scaleY: 1
+        }
+      );
+    }
   },
 
-  // Service cards hover and reveal
+  // Service cards
   initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
-    
-    // Reveal animation
+
     gsap.fromTo(cards,
       { opacity: 0, y: 50 },
       {
@@ -261,24 +309,25 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
-    
-    // Shine effect on hover
+
     cards.forEach(card => {
       const shine = card.querySelector('.service-card__shine');
-      
+
       card.addEventListener('mouseenter', () => {
-        gsap.fromTo(shine,
-          { x: '-100%' },
-          { x: '100%', duration: 0.6, ease: 'power2.inOut' }
-        );
-        
+        if (shine) {
+          gsap.fromTo(shine,
+            { x: '-100%' },
+            { x: '100%', duration: 0.6, ease: 'power2.inOut' }
+          );
+        }
+
         gsap.to(card, {
           y: -10,
           duration: 0.3,
           ease: 'power2.out'
         });
       });
-      
+
       card.addEventListener('mouseleave', () => {
         gsap.to(card, {
           y: 0,
@@ -286,15 +335,24 @@ window.Animations = {
           ease: 'power2.out'
         });
       });
+
+      // Mouse position for radial glow
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
     });
   },
 
   // Project cards
   initProjectCards() {
     const cards = document.querySelectorAll('.project-card');
-    
+
     gsap.fromTo(cards,
-      { opacity: 0, y: 60, scale: 0.95 },
+      { opacity: 0, y: 60, scale: 0.97 },
       {
         scrollTrigger: {
           trigger: '.projects__grid',
@@ -309,29 +367,6 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
-    
-    // Grayscale to color on hover
-    cards.forEach(card => {
-      const image = card.querySelector('.project-card__image');
-      
-      card.addEventListener('mouseenter', () => {
-        gsap.to(image, {
-          scale: 1.1,
-          filter: 'grayscale(0%)',
-          duration: 0.4,
-          ease: 'power2.out'
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(image, {
-          scale: 1,
-          filter: 'grayscale(100%)',
-          duration: 0.4,
-          ease: 'power2.out'
-        });
-      });
-    });
   },
 
   // Metrics section
@@ -351,6 +386,48 @@ window.Animations = {
         ease: 'power3.out'
       }
     );
+  },
+
+  // Equipment cards (stagger reveal)
+  initEquipment() {
+    const cards = document.querySelectorAll('.equipment-card');
+    if (!cards.length) return;
+
+    gsap.fromTo(cards,
+      { opacity: 0, y: 40 },
+      {
+        scrollTrigger: {
+          trigger: '.equipment__grid',
+          start: 'top 80%',
+          once: true
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power3.out'
+      }
+    );
+  },
+
+  // Marquee: fade-in only (animation itself is CSS-driven)
+  initMarquee() {
+    const marquees = document.querySelectorAll('.marquee');
+    marquees.forEach(m => {
+      gsap.fromTo(m,
+        { opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: m,
+            start: 'top 95%',
+            once: true
+          },
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out'
+        }
+      );
+    });
   }
 };
 

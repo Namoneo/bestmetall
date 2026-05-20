@@ -66,9 +66,36 @@ a, button, [role="button"], input, textarea, select, [data-cursor="pointer"] {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  /* Wrap-safe defaults — long RU/UZ words shouldn't clip or overflow */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Prevent any heading from overflowing its container */
+.section__title,
+.hero__title,
+.hero__title-line,
+.service-card__title,
+.equipment-card__title,
+.project-card__title,
+.process__step-title,
+.cta__title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* Generic safety for grid/flex children so they can shrink and wrap */
+.services__grid > article,
+.equipment__grid > article,
+.projects__grid > article,
+.about__features > div {
+  min-width: 0;
 }
 
 h1 {
@@ -91,6 +118,7 @@ h4 {
 p {
   color: var(--text-secondary);
   max-width: 65ch;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -191,6 +219,52 @@ strong, b {
 
 .text-muted {
   color: var(--text-muted);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'ss01' on, 'tnum' on;
+}
+
+/* Brushed metal surface utilities */
+.surface-brushed {
+  background: var(--brushed-steel);
+  position: relative;
+  overflow: hidden;
+}
+
+.surface-brushed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.018) 0px,
+    rgba(255, 255, 255, 0.018) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+.surface-brushed-h {
+  background: var(--brushed-steel-horizontal);
+  position: relative;
+  overflow: hidden;
+}
+
+.surface-brushed-h::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
 }
 
 /* Line clamp utilities */

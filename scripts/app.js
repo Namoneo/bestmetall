@@ -1,6 +1,6 @@
 /**
  * BEST METALL - MAIN APPLICATION
- * Application logic, smooth scroll, language toggle, mobile nav
+ * Application logic, smooth scroll, mobile nav
  */
 
 // Initialize Lenis smooth scroll
@@ -19,52 +19,19 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
-// Language Management
+// Language Management — Uzbek only
 const LanguageManager = {
-  currentLang: localStorage.getItem('bestmetall-lang') || 'ru',
-
   init() {
-    // Guard against stale values from older builds (e.g. 'en')
-    if (this.currentLang !== 'ru' && this.currentLang !== 'uz') {
-      this.currentLang = 'ru';
-      localStorage.setItem('bestmetall-lang', this.currentLang);
-    }
-    this.applyLanguage(this.currentLang);
-    this.setupToggle();
-    this.updateToggleUI();
+    this.applyLanguage();
   },
 
-  setupToggle() {
-    const toggle = document.getElementById('langToggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        this.currentLang = this.currentLang === 'ru' ? 'uz' : 'ru';
-        localStorage.setItem('bestmetall-lang', this.currentLang);
-        this.applyLanguage(this.currentLang);
-        this.updateToggleUI();
-      });
-    }
-  },
-
-  updateToggleUI() {
-    const toggle = document.getElementById('langToggle');
-    if (toggle) {
-      const current = toggle.querySelector('.lang-toggle__current');
-      const other = toggle.querySelector('.lang-toggle__other');
-      if (current && other) {
-        current.textContent = this.currentLang.toUpperCase();
-        other.textContent = this.currentLang === 'ru' ? 'UZ' : 'RU';
-      }
-    }
-  },
-
-  applyLanguage(lang) {
-    document.documentElement.lang = lang;
+  applyLanguage() {
+    document.documentElement.lang = 'uz';
     const elements = document.querySelectorAll('[data-i18n]');
 
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
-      const translation = this.getTranslation(lang, key);
+      const translation = this.getTranslation(key);
       if (translation) {
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
           el.placeholder = translation;
@@ -75,9 +42,9 @@ const LanguageManager = {
     });
   },
 
-  getTranslation(lang, key) {
+  getTranslation(key) {
     const keys = key.split('.');
-    let value = translations[lang];
+    let value = translations;
     for (const k of keys) {
       value = value?.[k];
     }
@@ -193,11 +160,9 @@ const FormHandler = {
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
 
-        const isUz = (document.documentElement.lang || 'ru') === 'uz';
-
         if (!name || !phone) {
           this.showMessage(
-            isUz ? 'Iltimos, barcha majburiy maydonlarni to\'ldiring' : 'Пожалуйста, заполните все обязательные поля',
+            'Iltimos, barcha majburiy maydonlarni to\'ldiring',
             'error'
           );
           return;
@@ -207,11 +172,11 @@ const FormHandler = {
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
-        submitBtn.textContent = isUz ? 'Yuborilmoqda...' : 'Отправка...';
+        submitBtn.textContent = 'Yuborilmoqda...';
 
         setTimeout(() => {
           this.showMessage(
-            isUz ? 'Rahmat! Tez orada siz bilan bog\'lanamiz.' : 'Спасибо! Мы свяжемся с вами в ближайшее время.',
+            'Rahmat! Tez orada siz bilan bog\'lanamiz.',
             'success'
           );
           form.reset();

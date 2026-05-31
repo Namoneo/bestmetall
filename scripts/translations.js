@@ -18,7 +18,7 @@ const translations = {
   techbar: {
     est: '2008 yilda asos solingan',
     location: 'Namangan · O\'zbekiston',
-    phone: '+998 90 123 45 67',
+    phone: '+998 99 809 86 12',
     hours: 'Du – Sh · 09:00 – 18:00'
   },
 

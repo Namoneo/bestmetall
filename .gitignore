@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Local verification scratch (screenshots + ad-hoc scripts)
+verify/
+scripts/verify-*.js
+
+# Pre-existing dev scratch
+screenshot-*.png
+compare-*.png
+screenshot-comparison.png
+inspect-*.json
+
+# OS
+.DS_Store

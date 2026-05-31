@@ -148,42 +148,108 @@ const CounterAnimation = {
   }
 };
 
+// ── Lead delivery config ─────────────────────────────────────────────
+// Point this at your serverless proxy (Cloudflare Worker / Vercel function).
+// The proxy holds the Telegram bot token; the page never sees it.
+// Leave empty ('') to run in demo mode (no network call, just shows success).
+const LEAD_ENDPOINT = '';
+
 // Form Handling
 const FormHandler = {
   init() {
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    this.form = document.getElementById('contactForm');
+    if (!this.form) return;
 
-        // Simple validation
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-
-        if (!name || !phone) {
-          this.showMessage(
-            'Iltimos, barcha majburiy maydonlarni to\'ldiring',
-            'error'
-          );
-          return;
+    // Inline validation on blur for required fields
+    ['name', 'phone'].forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => {
+        if (input.closest('.form__group').classList.contains('form__group--invalid')) {
+          this.validateField(input);
         }
-
-        // Simulate form submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Yuborilmoqda...';
-
-        setTimeout(() => {
-          this.showMessage(
-            'Rahmat! Tez orada siz bilan bog\'lanamiz.',
-            'success'
-          );
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        }, 1500);
       });
+    });
+
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+  },
+
+  validateField(input) {
+    const group = input.closest('.form__group');
+    const errorEl = group.querySelector('.form__error');
+    const value = input.value.trim();
+    let error = '';
+
+    if (input.id === 'name') {
+      if (!value) error = 'Ismingizni kiriting';
+      else if (value.length < 2) error = 'Ism juda qisqa';
+    } else if (input.id === 'phone') {
+      const digits = value.replace(/\D/g, '');
+      if (!value) error = 'Telefon raqamini kiriting';
+      else if (digits.length < 9) error = 'To\'liq raqam kiriting, masalan +998 90 123 45 67';
+    }
+
+    if (error) {
+      group.classList.add('form__group--invalid');
+      if (errorEl) errorEl.textContent = error;
+      return false;
+    }
+    group.classList.remove('form__group--invalid');
+    if (errorEl) errorEl.textContent = '';
+    return true;
+  },
+
+  async handleSubmit(e) {
+    e.preventDefault();
+    const form = this.form;
+
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const okName = this.validateField(nameInput);
+    const okPhone = this.validateField(phoneInput);
+
+    if (!okName || !okPhone) {
+      (okName ? phoneInput : nameInput).focus();
+      return;
+    }
+
+    const data = {
+      name: nameInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      projectType: document.getElementById('projectType')?.value || '',
+      message: document.getElementById('message')?.value.trim() || '',
+      company: document.getElementById('company')?.value || '', // honeypot
+      page: location.href,
+    };
+
+    const submitBtn = document.getElementById('contactSubmit');
+    submitBtn.classList.add('is-loading');
+    submitBtn.disabled = true;
+
+    try {
+      if (LEAD_ENDPOINT) {
+        const res = await fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('Request failed: ' + res.status);
+      } else {
+        // Demo mode — no endpoint configured yet
+        await new Promise((r) => setTimeout(r, 900));
+      }
+
+      this.showMessage('Rahmat! Arizangiz qabul qilindi — tez orada bog\'lanamiz.', 'success');
+      form.reset();
+    } catch (err) {
+      this.showMessage(
+        'Yuborishda xatolik. Iltimos, Telegram yoki qo\'ng\'iroq orqali bog\'laning.',
+        'error'
+      );
+    } finally {
+      submitBtn.classList.remove('is-loading');
+      submitBtn.disabled = false;
     }
   },
 
@@ -218,7 +284,9 @@ const FormHandler = {
   }
 };
 
-// Spark effect for hero — welding-style particles from a focal point
+// Ember effect for hero — slow rising embers, like heat off forged metal.
+// Deliberately calm and sparse (not a firework burst): one particle at a time,
+// drifting upward with a gentle horizontal sway and a long fade.
 const SparkEffect = {
   init() {
     const container = document.getElementById('sparks');
@@ -229,67 +297,50 @@ const SparkEffect = {
       return;
     }
 
-    // Focal point: anchor near the hero weld-line if present, else center bottom
-    const getOrigin = () => {
-      const rect = container.getBoundingClientRect();
-      const weldEl = container.parentElement?.querySelector('.hero__content .weld-line');
-      if (weldEl) {
-        const wRect = weldEl.getBoundingClientRect();
-        return {
-          x: ((wRect.left + wRect.width / 2 - rect.left) / rect.width) * 100,
-          y: ((wRect.top + wRect.height / 2 - rect.top) / rect.height) * 100
-        };
-      }
-      return { x: 50, y: 65 };
+    const createEmber = () => {
+      const ember = document.createElement('div');
+      const hot = Math.random() < 0.3;
+      ember.className = hot ? 'spark spark--hot' : 'spark';
+
+      // Spawn anywhere across the lower band of the hero, near the bottom edge
+      const startX = 8 + Math.random() * 84;        // 8%–92% across
+      ember.style.left = `${startX}%`;
+      ember.style.top = `${90 + Math.random() * 8}%`; // just above the bottom
+
+      // Smaller, calmer particles
+      const size = 1.5 + Math.random() * 1.5;
+      ember.style.width = `${size}px`;
+      ember.style.height = `${size}px`;
+
+      container.appendChild(ember);
+
+      // Rise straight up over a long distance with a slow, eased drift
+      const rise = 180 + Math.random() * 220;        // px upward
+      const sway = (Math.random() - 0.5) * 60;       // gentle left/right drift
+      const peakOpacity = 0.35 + Math.random() * 0.4;
+      const dur = 4 + Math.random() * 3;             // slow: 4–7s
+
+      gsap.fromTo(ember,
+        { opacity: 0, x: 0, y: 0, scale: 0.6 },
+        {
+          keyframes: [
+            { opacity: peakOpacity, duration: dur * 0.2, ease: 'sine.out' },
+            { opacity: peakOpacity, scale: 1, duration: dur * 0.5, ease: 'none' },
+            { opacity: 0, scale: 0.4, duration: dur * 0.3, ease: 'sine.in' }
+          ],
+          y: -rise,
+          x: sway,
+          duration: dur,
+          ease: 'sine.out',
+          onComplete: () => ember.remove()
+        }
+      );
     };
 
-    const createSpark = () => {
-      const origin = getOrigin();
-      const burstSize = 1 + Math.floor(Math.random() * 3); // 1-3 per tick
-
-      for (let i = 0; i < burstSize; i++) {
-        const spark = document.createElement('div');
-        const hot = Math.random() < 0.4;
-        spark.className = hot ? 'spark spark--hot' : 'spark';
-
-        // Tiny jitter around origin
-        const jitterX = (Math.random() - 0.5) * 4;
-        const jitterY = (Math.random() - 0.5) * 2;
-        spark.style.left = `${origin.x + jitterX}%`;
-        spark.style.top = `${origin.y + jitterY}%`;
-
-        container.appendChild(spark);
-
-        // Direction: mostly upward in a cone, sometimes sideways
-        const angle = (-Math.PI / 2) + (Math.random() - 0.5) * 1.3; // -90deg ± ~37deg
-        const distance = 60 + Math.random() * 140;
-        const endX = Math.cos(angle) * distance;
-        const endY = Math.sin(angle) * distance;
-        const midX = endX * 0.5 + (Math.random() - 0.5) * 10;
-        const midY = endY * 0.4;
-
-        gsap.fromTo(spark,
-          {
-            opacity: 0,
-            scale: 0.4,
-            x: 0,
-            y: 0
-          },
-          {
-            keyframes: [
-              { opacity: 1, scale: 1, x: midX, y: midY, duration: 0.25, ease: 'power2.out' },
-              { opacity: 0, scale: 0.2, x: endX, y: endY + 40, duration: 0.7 + Math.random() * 0.4, ease: 'power1.in' }
-            ],
-            onComplete: () => spark.remove()
-          }
-        );
-      }
-    };
-
-    // Periodic bursts — slightly irregular timing for natural feel
+    // Sparse, irregular emission — one ember at a time, well spaced out
     const tick = () => {
-      createSpark();
-      const next = 110 + Math.random() * 220;
+      createEmber();
+      const next = 600 + Math.random() * 900; // every ~0.6–1.5s
       setTimeout(tick, next);
     };
     tick();
@@ -297,12 +348,152 @@ const SparkEffect = {
 };
 
 // Initialize everything on DOM ready
+// Photo gallery + lightbox
+// Each .photo-slot[data-photo] tries to load its image. If the file exists,
+// it overlays the CAD placeholder and becomes clickable → lightbox. If the
+// file is missing, the placeholder stays. Drop photos into images/projects/
+// to light them up — no markup changes needed.
+const Gallery = {
+  items: [], // { src, alt, slot }
+
+  init() {
+    const slots = document.querySelectorAll('.photo-slot[data-photo]');
+    slots.forEach((slot) => {
+      const src = slot.getAttribute('data-photo');
+      const alt = slot.getAttribute('data-alt') || '';
+      if (!src) return;
+
+      const probe = new Image();
+      probe.onload = () => this.activate(slot, src, alt);
+      probe.onerror = () => {}; // leave placeholder
+      probe.src = src;
+    });
+
+    this.buildLightbox();
+  },
+
+  activate(slot, src, alt) {
+    const img = document.createElement('img');
+    img.className = 'photo-slot__img';
+    img.src = src;
+    img.alt = alt;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    slot.insertBefore(img, slot.firstChild);
+
+    const zoom = document.createElement('span');
+    zoom.className = 'photo-slot__zoom';
+    zoom.setAttribute('aria-hidden', 'true');
+    zoom.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">' +
+      '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>';
+    slot.appendChild(zoom);
+
+    slot.classList.add('has-photo');
+
+    const index = this.items.length;
+    this.items.push({ src, alt });
+
+    slot.setAttribute('role', 'button');
+    slot.setAttribute('tabindex', '0');
+    slot.setAttribute('aria-label', (alt || 'Loyiha rasmi') + ' — kattalashtirish');
+    slot.addEventListener('click', () => this.open(index));
+    slot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.open(index); }
+    });
+  },
+
+  buildLightbox() {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.id = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'Loyiha rasmi');
+    lb.innerHTML =
+      '<figure class="lightbox__figure">' +
+      '  <img class="lightbox__img" id="lightboxImg" src="" alt="">' +
+      '  <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>' +
+      '  <button class="lightbox__btn lightbox__close" id="lightboxClose" aria-label="Yopish">' +
+      '    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
+      '  </button>' +
+      '  <button class="lightbox__btn lightbox__prev" id="lightboxPrev" aria-label="Oldingi">' +
+      '    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>' +
+      '  </button>' +
+      '  <button class="lightbox__btn lightbox__next" id="lightboxNext" aria-label="Keyingi">' +
+      '    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>' +
+      '  </button>' +
+      '</figure>';
+    document.body.appendChild(lb);
+
+    this.el = lb;
+    this.imgEl = lb.querySelector('#lightboxImg');
+    this.capEl = lb.querySelector('#lightboxCaption');
+
+    lb.querySelector('#lightboxClose').addEventListener('click', () => this.close());
+    lb.querySelector('#lightboxPrev').addEventListener('click', () => this.step(-1));
+    lb.querySelector('#lightboxNext').addEventListener('click', () => this.step(1));
+    lb.addEventListener('click', (e) => { if (e.target === lb) this.close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!this.el.classList.contains('is-open')) return;
+      if (e.key === 'Escape') this.close();
+      else if (e.key === 'ArrowLeft') this.step(-1);
+      else if (e.key === 'ArrowRight') this.step(1);
+    });
+  },
+
+  open(index) {
+    if (!this.items.length) return;
+    this.current = index;
+    this.render();
+    this.el.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    this.el.querySelector('#lightboxClose').focus();
+  },
+
+  step(dir) {
+    this.current = (this.current + dir + this.items.length) % this.items.length;
+    this.render();
+  },
+
+  render() {
+    const item = this.items[this.current];
+    this.imgEl.src = item.src;
+    this.imgEl.alt = item.alt;
+    this.capEl.textContent = item.alt;
+    const multi = this.items.length > 1;
+    this.el.querySelector('#lightboxPrev').style.display = multi ? 'grid' : 'none';
+    this.el.querySelector('#lightboxNext').style.display = multi ? 'grid' : 'none';
+  },
+
+  close() {
+    this.el.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+};
+
+// Floating contact dock — reveal after the user scrolls past the hero
+const ContactDock = {
+  init() {
+    const dock = document.getElementById('contactDock');
+    if (!dock) return;
+    const toggle = () => {
+      const scrolled = (window.scrollY || document.documentElement.scrollTop) > 400;
+      dock.classList.toggle('is-visible', scrolled);
+    };
+    toggle();
+    window.addEventListener('scroll', toggle, { passive: true });
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   LanguageManager.init();
   MobileNav.init();
   Navigation.init();
   CounterAnimation.init();
   FormHandler.init();
+  ContactDock.init();
+  Gallery.init();
   SparkEffect.init();
 
   // Initialize animations

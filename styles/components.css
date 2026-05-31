@@ -1379,7 +1379,7 @@
 }
 
 /* ============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — Precision Crosshair (CNC/Laser)
    ============================================ */
 
 .cursor {
@@ -1389,64 +1389,175 @@
   pointer-events: none;
   z-index: var(--z-cursor);
   will-change: transform;
+  mix-blend-mode: difference;
 }
 
-.cursor__ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid var(--accent-fire);
-  border-radius: 50%;
-  background-color: rgba(255, 107, 44, 0.06);
-  transform: translate(-50%, -50%);
-  transition:
-    width var(--transition-base),
-    height var(--transition-base),
-    background-color var(--transition-base),
-    border-color var(--transition-base),
-    box-shadow var(--transition-base);
-  box-shadow:
-    0 0 0 1px rgba(10, 11, 13, 0.5),
-    0 0 12px rgba(255, 107, 44, 0.45),
-    inset 0 0 6px rgba(255, 107, 44, 0.15);
-}
-
+/* Central dot — the laser focal point */
 .cursor__dot {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 5px;
-  height: 5px;
-  background-color: var(--accent-fire);
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: transform var(--transition-fast), background-color var(--transition-fast);
-  box-shadow:
-    0 0 0 1px rgba(10, 11, 13, 0.6),
-    0 0 8px rgba(255, 107, 44, 0.9);
 }
 
-.cursor--hover .cursor__ring {
-  width: 56px;
-  height: 56px;
-  border-color: var(--accent-hot);
-  background-color: rgba(255, 138, 61, 0.1);
-  box-shadow:
-    0 0 0 1px rgba(10, 11, 13, 0.5),
-    0 0 18px rgba(255, 138, 61, 0.55),
-    inset 0 0 10px rgba(255, 138, 61, 0.2);
+/* Crosshair lines */
+.cursor__crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  transition:
+    width var(--transition-base),
+    height var(--transition-base),
+    opacity var(--transition-base);
+}
+
+.cursor__crosshair::before,
+.cursor__crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Horizontal line */
+.cursor__crosshair::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+/* Vertical line */
+.cursor__crosshair::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+/* Gap at center — creates the reticle look */
+.cursor__crosshair-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: var(--bg-primary);
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  transition: width var(--transition-base), height var(--transition-base);
+}
+
+/* Corner ticks (CAD style) */
+.cursor__ticks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  transition:
+    width var(--transition-base),
+    height var(--transition-base),
+    opacity var(--transition-base);
+  opacity: 0.6;
+}
+
+.cursor__ticks::before,
+.cursor__ticks::after,
+.cursor__ticks span::before,
+.cursor__ticks span::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: background-color var(--transition-base);
+}
+
+/* Top-left corner tick */
+.cursor__ticks::before {
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 1px;
+}
+
+.cursor__ticks::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 8px;
+}
+
+/* Bottom-right corner tick */
+.cursor__ticks span::before {
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 1px;
+}
+
+.cursor__ticks span::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 8px;
+}
+
+/* ── Hover state ── */
+.cursor--hover .cursor__crosshair {
+  width: 48px;
+  height: 48px;
+}
+
+.cursor--hover .cursor__crosshair::before,
+.cursor--hover .cursor__crosshair::after {
+  background-color: var(--accent-fire);
+  box-shadow: 0 0 6px rgba(255, 107, 44, 0.6);
 }
 
 .cursor--hover .cursor__dot {
-  background-color: var(--forge-yellow, #FFC647);
+  background-color: var(--accent-fire);
+  box-shadow: 0 0 8px rgba(255, 107, 44, 0.8);
 }
 
-.cursor--click .cursor__ring {
-  width: 28px;
-  height: 28px;
+.cursor--hover .cursor__ticks {
+  width: 64px;
+  height: 64px;
+  opacity: 0.8;
+}
+
+.cursor--hover .cursor__ticks::before,
+.cursor--hover .cursor__ticks::after,
+.cursor--hover .cursor__ticks span::before,
+.cursor--hover .cursor__ticks span::after {
+  background-color: var(--accent-fire);
+}
+
+/* ── Click state ── */
+.cursor--click .cursor__crosshair {
+  width: 24px;
+  height: 24px;
 }
 
 .cursor--click .cursor__dot {
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: translate(-50%, -50%) scale(0.6);
+  background-color: var(--forge-yellow);
+}
+
+.cursor--click .cursor__ticks {
+  width: 36px;
+  height: 36px;
+  opacity: 0.3;
 }
 
 /* Hide custom cursor on touch devices */

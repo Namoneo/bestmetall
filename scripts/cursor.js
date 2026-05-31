@@ -1,14 +1,14 @@
 /**
  * BEST METALL - CUSTOM CURSOR
- * Precision crosshair cursor (CNC / laser cutting aesthetic)
+ * CMM Probe / Stylus cursor (precision manufacturing aesthetic)
  */
 
 class CustomCursor {
   constructor() {
     this.cursor = null;
-    this.crosshair = null;
-    this.ticks = null;
-    this.dot = null;
+    this.tip = null;
+    this.shaft = null;
+    this.glow = null;
     this.pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     this.target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     this.isActive = false;
@@ -34,27 +34,21 @@ class CustomCursor {
     this.cursor = document.createElement('div');
     this.cursor.className = 'cursor';
 
-    // Crosshair (horizontal + vertical lines with center gap)
-    this.crosshair = document.createElement('div');
-    this.crosshair.className = 'cursor__crosshair';
+    // Ambient glow (behind everything)
+    this.glow = document.createElement('div');
+    this.glow.className = 'cursor__glow';
 
-    const crosshairInner = document.createElement('div');
-    crosshairInner.className = 'cursor__crosshair-inner';
-    this.crosshair.appendChild(crosshairInner);
+    // Stylus shaft (thin diagonal line)
+    this.shaft = document.createElement('div');
+    this.shaft.className = 'cursor__shaft';
 
-    // Corner ticks (CAD-style measurement corners)
-    this.ticks = document.createElement('div');
-    this.ticks.className = 'cursor__ticks';
-    const tickSpan = document.createElement('span');
-    this.ticks.appendChild(tickSpan);
+    // Probe tip (ruby sphere)
+    this.tip = document.createElement('div');
+    this.tip.className = 'cursor__tip';
 
-    // Central dot (laser focal point)
-    this.dot = document.createElement('div');
-    this.dot.className = 'cursor__dot';
-
-    this.cursor.appendChild(this.ticks);
-    this.cursor.appendChild(this.crosshair);
-    this.cursor.appendChild(this.dot);
+    this.cursor.appendChild(this.glow);
+    this.cursor.appendChild(this.shaft);
+    this.cursor.appendChild(this.tip);
     document.body.appendChild(this.cursor);
 
     this.isActive = true;

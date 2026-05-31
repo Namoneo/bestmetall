@@ -1255,6 +1255,9 @@
 .contact__hours li strong {
   font-family: var(--font-mono);
   font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
 
 /* ============================================
    SOCIAL ICONS

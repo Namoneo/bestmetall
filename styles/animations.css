@@ -563,9 +563,7 @@
   .metric-card__blueprint,
   .cta__glow--1,
   .cta__glow--2,
-  .tech-bar__dot,
-  .contact__map-pin::before,
-  .contact__map-pin::after {
+  .tech-bar__dot {
     animation: none;
   }
   

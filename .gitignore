@@ -1,9 +1,18 @@
 # Dependencies
 node_modules/
 
+# Python / CMS runtime
+.venv/
+__pycache__/
+*.pyc
+database.db
+uploads/
+.env
+
 # Local verification scratch (screenshots + ad-hoc scripts)
 verify/
 scripts/verify-*.js
+scripts/shot-*.js
 
 # Pre-existing dev scratch
 screenshot-*.png

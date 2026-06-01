@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Best Metall — Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body class="min-h-screen bg-neutral-950 text-neutral-100">
+    <main class="mx-auto flex min-h-screen max-w-6xl items-center px-6 py-12">
+      <div class="grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <section class="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
+          <p class="mb-4 text-sm uppercase tracking-[0.3em] text-orange-400">Best Metall CMS</p>
+          <h1 class="max-w-xl text-4xl font-semibold leading-tight text-white">Saytni dizaynga tegmasdan boshqaring.</h1>
+          <p class="mt-6 max-w-2xl text-base leading-7 text-neutral-300">
+            Sarlavhalar, menyu, xizmatlar, loyihalar, narxlar va aloqa ma'lumotlarini bir joydan yangilang — saytning ko'rinishi o'zgarmaydi.
+          </p>
+          <div class="mt-10 grid gap-4 text-sm text-neutral-300 sm:grid-cols-3">
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="font-medium text-white">Har bir bo'lim</p>
+              <p class="mt-2">Header, body va footer — barchasi tahrirlanadi.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="font-medium text-white">Rasmlar</p>
+              <p class="mt-2">Loyiha rasmlarini to'g'ridan-to'g'ri yuklang.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="font-medium text-white">Tez yangilash</p>
+              <p class="mt-2">Saytning ko'rinishini o'zgartirmasdan.</p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="rounded-3xl border border-neutral-800 bg-neutral-900 p-8 shadow-2xl"
+          x-data="loginForm()"
+          x-init="init()"
+        >
+          <h2 class="text-2xl font-semibold text-white">Kirish</h2>
+          <p class="mt-2 text-sm text-neutral-400">Administrator hisobi bilan kiring.</p>
+
+          <form class="mt-8 space-y-5" @submit.prevent="submit">
+            <label class="block">
+              <span class="mb-2 block text-sm font-medium text-neutral-300">Email</span>
+              <input x-model="email" type="email" required
+                class="w-full rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 text-white outline-none transition focus:border-orange-400"
+                placeholder="admin@bestmetall.uz">
+            </label>
+
+            <label class="block">
+              <span class="mb-2 block text-sm font-medium text-neutral-300">Parol</span>
+              <input x-model="password" type="password" required
+                class="w-full rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 text-white outline-none transition focus:border-orange-400"
+                placeholder="Parolingiz">
+            </label>
+
+            <template x-if="error">
+              <div class="rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200" x-text="error"></div>
+            </template>
+
+            <button type="submit"
+              class="inline-flex w-full items-center justify-center rounded-2xl bg-orange-500 px-4 py-3 font-medium text-neutral-950 transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
+              :disabled="loading">
+              <span x-show="!loading">Kirish</span>
+              <span x-show="loading">Kirilmoqda...</span>
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      function loginForm() {
+        return {
+          email: '', password: '', error: '', loading: false,
+          init() {
+            if (window.localStorage.getItem('cmsToken')) {
+              window.location.replace('/admin/dashboard');
+            }
+          },
+          async submit() {
+            this.error = '';
+            this.loading = true;
+            try {
+              const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: this.email, password: this.password }),
+              });
+              const result = await response.json();
+              if (!response.ok) {
+                throw new Error(result.error || 'Kirishda xatolik.');
+              }
+              window.localStorage.setItem('cmsToken', result.token);
+              window.localStorage.setItem('cmsUserEmail', result.user.email);
+              window.location.replace('/admin/dashboard');
+            } catch (error) {
+              this.error = error.message || 'Kirishda xatolik.';
+            } finally {
+              this.loading = false;
+            }
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

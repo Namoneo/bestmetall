@@ -121,9 +121,12 @@ const Navigation = {
 // Counter Animation
 const CounterAnimation = {
   init() {
-    const counters = document.querySelectorAll('[data-count]');
+    // Only bind counters that haven't been wired yet (safe to call repeatedly,
+    // e.g. after the CMS loader rebuilds stat/metric nodes).
+    const counters = document.querySelectorAll('[data-count]:not([data-counter-bound])');
 
     counters.forEach(counter => {
+      counter.setAttribute('data-counter-bound', '1');
       const target = parseInt(counter.getAttribute('data-count'));
       const suffix = counter.getAttribute('data-suffix') || '';
       const duration = 2000;
@@ -357,8 +360,17 @@ const Gallery = {
   items: [], // { src, alt, slot }
 
   init() {
-    const slots = document.querySelectorAll('.photo-slot[data-photo]');
+    this.scan();
+    if (!this.lightboxBuilt) {
+      this.buildLightbox();
+      this.lightboxBuilt = true;
+    }
+  },
+
+  scan() {
+    const slots = document.querySelectorAll('.photo-slot[data-photo]:not([data-photo-scanned])');
     slots.forEach((slot) => {
+      slot.setAttribute('data-photo-scanned', '1');
       const src = slot.getAttribute('data-photo');
       const alt = slot.getAttribute('data-alt') || '';
       if (!src) return;
@@ -368,8 +380,6 @@ const Gallery = {
       probe.onerror = () => {}; // leave placeholder
       probe.src = src;
     });
-
-    this.buildLightbox();
   },
 
   activate(slot, src, alt) {
@@ -502,4 +512,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log('Best Metall - Forged Precision');
+});
+
+// When the CMS loader rebuilds repeater nodes (stats, metrics, projects, etc.),
+// re-run the counter and gallery wiring so the new nodes animate and load photos.
+document.addEventListener('cms:content-applied', () => {
+  CounterAnimation.init();
+  Gallery.scan();
+  if (window.ScrollTrigger) {
+    window.ScrollTrigger.refresh();
+  }
 });

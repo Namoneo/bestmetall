@@ -77,8 +77,24 @@
     items(list).forEach(function (item, index) {
       var node = template.cloneNode(true);
       node.removeAttribute('id');
+      clearRevealStyles(node);
       fill(node, item, index);
       container.appendChild(node);
+    });
+  }
+
+  // GSAP reveal animations freeze the first (template) card at opacity:0 /
+  // translateY before we clone it, so clones inherit that hidden inline state
+  // and — with their animation target now removed — never become visible.
+  // Strip those leftover inline styles so rebuilt items render normally.
+  function clearRevealStyles(node) {
+    var nodes = [node].concat(Array.prototype.slice.call(node.querySelectorAll('*')));
+    nodes.forEach(function (el) {
+      if (!el.style) { return; }
+      var op = el.style.opacity;
+      if (op !== '' && parseFloat(op) < 1) { el.style.removeProperty('opacity'); }
+      if (el.style.transform) { el.style.removeProperty('transform'); }
+      if (el.style.visibility === 'hidden') { el.style.removeProperty('visibility'); }
     });
   }
 

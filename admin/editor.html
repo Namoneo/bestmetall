@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ section_label }} — Best Metall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body
+    class="min-h-screen bg-neutral-100 text-neutral-900"
+    x-data='editorPage("{{ section_name }}", {{ section_definition | tojson }})'
+    x-init="init()"
+  >
+    <header class="border-b border-neutral-200 bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <div>
+          <p class="text-sm uppercase tracking-[0.25em] text-neutral-500">Best Metall CMS</p>
+          <h1 class="text-2xl font-semibold">{{ section_label }}</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/admin/dashboard" class="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-900">Orqaga</a>
+          <a href="/" target="_blank" rel="noreferrer" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700">Saytni ko'rish</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[260px_minmax(0,1fr)]">
+      <aside class="space-y-3">
+        {% for section in sections %}
+          <a href="/admin/editor?section={{ section.name }}"
+            class="block rounded-2xl px-4 py-3 text-sm transition {% if section.name == section_name %}bg-neutral-900 text-white shadow-lg{% else %}border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900{% endif %}">
+            <div class="font-medium">{{ section.label }}</div>
+            <div class="mt-1 text-xs {% if section.name == section_name %}text-neutral-300{% else %}text-neutral-400{% endif %}">{{ section.name }}</div>
+          </a>
+        {% endfor %}
+      </aside>
+
+      <section class="space-y-6">
+        <div class="rounded-3xl bg-white p-8 shadow-sm">
+          <p class="text-sm uppercase tracking-[0.25em] text-orange-500">{{ section_name }}</p>
+          <h2 class="mt-2 text-3xl font-semibold">{{ section_label }}</h2>
+          <p class="mt-3 max-w-3xl text-sm leading-7 text-neutral-500">
+            Bu maydonlar saytdagi <code class="rounded bg-neutral-100 px-1 py-0.5 text-xs">data-cms</code> elementlariga bevosita bog'langan.
+          </p>
+
+          <template x-if="loading">
+            <div class="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-500">Yuklanmoqda...</div>
+          </template>
+          <template x-if="error">
+            <div class="mt-6 rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-700" x-text="error"></div>
+          </template>
+          <template x-if="success">
+            <div class="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700" x-text="success"></div>
+          </template>
+        </div>
+
+        <form class="space-y-6" @submit.prevent="save">
+          {% for group in field_groups %}
+            <section class="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm">
+              <h3 class="text-lg font-semibold text-neutral-900">{{ group.label }}</h3>
+              <div class="mt-6 grid gap-5 md:grid-cols-2">
+                {% for field in group.fields %}
+                  {% if field.type == 'repeater' %}
+                    <div class="md:col-span-2">
+                      <div class="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <span class="block text-sm font-medium text-neutral-700">{{ field.label }}</span>
+                          {% if field.help_text %}<span class="mt-1 block text-xs text-neutral-400">{{ field.help_text }}</span>{% endif %}
+                        </div>
+                        <button type="button"
+                          class="inline-flex items-center rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-900"
+                          @click="addRepeaterItem('{{ field.key }}')">
+                          + {{ field.item_label }}
+                        </button>
+                      </div>
+
+                      <div class="mt-4 space-y-4">
+                        <template x-if="!ensureRepeater('{{ field.key }}').length">
+                          <div class="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 px-4 py-6 text-sm text-neutral-500">
+                            Hozircha hech narsa yo'q.
+                          </div>
+                        </template>
+
+                        <template x-for="(item, index) in ensureRepeater('{{ field.key }}')" :key="'{{ field.key }}-' + index">
+                          <section class="rounded-2xl border border-neutral-200 bg-neutral-50/70 p-5">
+                            <div class="flex flex-wrap items-center justify-between gap-3">
+                              <h4 class="text-sm font-semibold text-neutral-900">{{ field.item_label }} <span x-text="index + 1"></span></h4>
+                              <div class="flex items-center gap-2">
+                                <button type="button" class="rounded-full border border-neutral-300 px-2.5 py-1 text-xs text-neutral-600 transition hover:border-neutral-900 hover:text-neutral-900" @click="moveRepeaterItem('{{ field.key }}', index, -1)" :disabled="index === 0">↑</button>
+                                <button type="button" class="rounded-full border border-neutral-300 px-2.5 py-1 text-xs text-neutral-600 transition hover:border-neutral-900 hover:text-neutral-900" @click="moveRepeaterItem('{{ field.key }}', index, 1)" :disabled="index === ensureRepeater('{{ field.key }}').length - 1">↓</button>
+                                <button type="button" class="rounded-full border border-rose-300 px-3 py-1 text-xs font-medium text-rose-700 transition hover:border-rose-500 hover:text-rose-900" @click="removeRepeaterItem('{{ field.key }}', index)">O'chirish</button>
+                              </div>
+                            </div>
+
+                            <div class="mt-4 grid gap-4 md:grid-cols-2">
+                              {% for item_key, item_field in field.item_fields.items() %}
+                                <label class="block {% if item_field.type == 'textarea' %}md:col-span-2{% endif %}">
+                                  <span class="mb-2 block text-sm font-medium text-neutral-700">{{ item_field.label }}</span>
+                                  {% if item_field.type == 'textarea' %}
+                                    <textarea x-model="form['{{ field.key }}'][index]['{{ item_key }}']"
+                                      class="min-h-[120px] w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 outline-none transition focus:border-orange-400"></textarea>
+                                  {% elif item_field.type == 'boolean' %}
+                                    <span class="flex h-[52px] items-center rounded-2xl border border-neutral-300 bg-white px-4">
+                                      <input x-model="form['{{ field.key }}'][index]['{{ item_key }}']" type="checkbox" class="h-5 w-5 rounded border-neutral-300 text-neutral-900 focus:ring-orange-400">
+                                      <span class="ml-3 text-sm text-neutral-600">Yoqilgan</span>
+                                    </span>
+                                  {% else %}
+                                    <input x-model="form['{{ field.key }}'][index]['{{ item_key }}']" type="text"
+                                      class="w-full rounded-2xl border border-neutral-300 bg-white px-4 py-3 outline-none transition focus:border-orange-400">
+                                  {% endif %}
+                                  {% if item_field.type == 'image' %}
+                                    <div class="mt-3 flex flex-wrap items-center gap-3">
+                                      <label class="inline-flex cursor-pointer items-center rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-900">
+                                        Rasm yuklash
+                                        <input type="file" accept="image/*" class="hidden" @change="uploadRepeaterImage('{{ field.key }}', index, '{{ item_key }}', $event)">
+                                      </label>
+                                      <template x-if="form['{{ field.key }}'][index]['{{ item_key }}']">
+                                        <img :src="normalizePreview(form['{{ field.key }}'][index]['{{ item_key }}'])" alt="" class="h-16 w-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2">
+                                      </template>
+                                    </div>
+                                  {% endif %}
+                                  {% if item_field.help_text %}<span class="mt-2 block text-xs text-neutral-400">{{ item_field.help_text }}</span>{% endif %}
+                                </label>
+                              {% endfor %}
+                            </div>
+                          </section>
+                        </template>
+                      </div>
+                    </div>
+                  {% else %}
+                    <label class="block {% if field.type == 'textarea' %}md:col-span-2{% endif %}">
+                      <span class="mb-2 block text-sm font-medium text-neutral-700">{{ field.label }}</span>
+                      {% if field.type == 'textarea' %}
+                        <textarea x-model="form['{{ field.key }}']"
+                          class="min-h-[140px] w-full rounded-2xl border border-neutral-300 bg-neutral-50 px-4 py-3 outline-none transition focus:border-orange-400"></textarea>
+                      {% elif field.type == 'boolean' %}
+                        <span class="flex h-[52px] items-center rounded-2xl border border-neutral-300 bg-neutral-50 px-4">
+                          <input x-model="form['{{ field.key }}']" type="checkbox" class="h-5 w-5 rounded border-neutral-300 text-neutral-900 focus:ring-orange-400">
+                          <span class="ml-3 text-sm text-neutral-600">Ushbu bo'limni saytda ko'rsatish</span>
+                        </span>
+                      {% else %}
+                        <input x-model="form['{{ field.key }}']" type="text"
+                          class="w-full rounded-2xl border border-neutral-300 bg-neutral-50 px-4 py-3 outline-none transition focus:border-orange-400">
+                      {% endif %}
+                      {% if field.type == 'image' %}
+                        <div class="mt-3 flex flex-wrap items-center gap-3">
+                          <label class="inline-flex cursor-pointer items-center rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-900">
+                            Rasm yuklash
+                            <input type="file" accept="image/*" class="hidden" @change="uploadImage('{{ field.key }}', $event)">
+                          </label>
+                          <template x-if="form['{{ field.key }}']">
+                            <img :src="normalizePreview(form['{{ field.key }}'])" alt="" class="h-16 w-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2">
+                          </template>
+                        </div>
+                      {% endif %}
+                      {% if field.help_text %}<span class="mt-2 block text-xs text-neutral-400">{{ field.help_text }}</span>{% endif %}
+                    </label>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </section>
+          {% endfor %}
+
+          <div class="sticky bottom-6 flex justify-end">
+            <button type="submit"
+              class="inline-flex items-center rounded-full bg-orange-500 px-6 py-3 font-medium text-neutral-950 shadow-lg transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
+              :disabled="loading || saving">
+              <span x-show="!saving">Saqlash</span>
+              <span x-show="saving">Saqlanmoqda...</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      function editorPage(sectionName, sectionDefinition) {
+        return {
+          token: '', sectionDefinition, form: {},
+          loading: true, saving: false, error: '', success: '',
+          async init() {
+            this.token = window.localStorage.getItem('cmsToken') || '';
+            if (!this.token) { window.location.replace('/admin/login'); return; }
+            await this.load();
+          },
+          async load() {
+            this.loading = true; this.error = '';
+            try {
+              const response = await fetch(`/api/content/${sectionName}`, {
+                headers: { Authorization: `Bearer ${this.token}` },
+              });
+              const result = await response.json();
+              if (!response.ok) {
+                if (response.status === 401) { this.resetAuth(); return; }
+                throw new Error(result.error || 'Yuklab bo\'lmadi.');
+              }
+              this.form = this.normalizeForm(result.data || {});
+            } catch (error) {
+              this.error = error.message || 'Yuklab bo\'lmadi.';
+            } finally {
+              this.loading = false;
+            }
+          },
+          async save() {
+            this.saving = true; this.error = ''; this.success = '';
+            try {
+              const response = await fetch(`/api/content/${sectionName}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.token}` },
+                body: JSON.stringify(this.form),
+              });
+              const result = await response.json();
+              if (!response.ok) {
+                if (response.status === 401) { this.resetAuth(); return; }
+                throw new Error(result.error || 'Saqlab bo\'lmadi.');
+              }
+              this.form = this.normalizeForm(result.data || {});
+              this.success = 'Saqlandi.';
+            } catch (error) {
+              this.error = error.message || 'Saqlab bo\'lmadi.';
+            } finally {
+              this.saving = false;
+            }
+          },
+          normalizeForm(data) {
+            const normalized = {};
+            const fields = this.sectionDefinition.fields || {};
+            Object.keys(fields).forEach((fieldKey) => {
+              const definition = fields[fieldKey];
+              const value = data[fieldKey];
+              if (definition.type === 'boolean') { normalized[fieldKey] = this.normalizeBoolean(value); return; }
+              if (definition.type === 'repeater') { normalized[fieldKey] = this.normalizeRepeater(definition, value); return; }
+              normalized[fieldKey] = value === undefined || value === null ? '' : String(value);
+            });
+            return normalized;
+          },
+          normalizeRepeater(definition, value) {
+            const source = Array.isArray(value) ? value : this.clone(definition.default || []);
+            return source.map((item) => this.normalizeRepeaterItem(definition, item));
+          },
+          normalizeRepeaterItem(definition, item) {
+            const normalized = {};
+            const itemFields = definition.item_fields || {};
+            Object.keys(itemFields).forEach((itemKey) => {
+              const itemDefinition = itemFields[itemKey];
+              const value = item && Object.prototype.hasOwnProperty.call(item, itemKey) ? item[itemKey] : itemDefinition.default;
+              if (itemDefinition.type === 'boolean') { normalized[itemKey] = this.normalizeBoolean(value); return; }
+              normalized[itemKey] = value === undefined || value === null ? '' : String(value);
+            });
+            return normalized;
+          },
+          ensureRepeater(fieldKey) {
+            if (!Array.isArray(this.form[fieldKey])) { this.form[fieldKey] = []; }
+            return this.form[fieldKey];
+          },
+          addRepeaterItem(fieldKey) {
+            const definition = this.sectionDefinition.fields[fieldKey];
+            this.ensureRepeater(fieldKey).push(this.clone(definition.empty_item || {}));
+          },
+          removeRepeaterItem(fieldKey, index) {
+            this.ensureRepeater(fieldKey).splice(index, 1);
+          },
+          moveRepeaterItem(fieldKey, index, delta) {
+            const list = this.ensureRepeater(fieldKey);
+            const target = index + delta;
+            if (target < 0 || target >= list.length) { return; }
+            const [moved] = list.splice(index, 1);
+            list.splice(target, 0, moved);
+          },
+          normalizeBoolean(value) {
+            if (typeof value === 'boolean') { return value; }
+            return ['1', 'true', 'yes', 'on'].includes(String(value || '').trim().toLowerCase());
+          },
+          async uploadImage(fieldKey, event) {
+            const file = event.target.files[0];
+            if (!file) { return; }
+            this.error = ''; this.success = '';
+            try {
+              const result = await this.sendUpload(file);
+              this.form[fieldKey] = result.url;
+              this.success = 'Rasm yuklandi. Saqlashni unutmang.';
+            } catch (error) {
+              this.error = error.message || 'Rasm yuklab bo\'lmadi.';
+            } finally {
+              event.target.value = '';
+            }
+          },
+          async uploadRepeaterImage(fieldKey, index, itemKey, event) {
+            const file = event.target.files[0];
+            if (!file) { return; }
+            this.error = ''; this.success = '';
+            try {
+              const result = await this.sendUpload(file);
+              this.ensureRepeater(fieldKey)[index][itemKey] = result.url;
+              this.success = 'Rasm yuklandi. Saqlashni unutmang.';
+            } catch (error) {
+              this.error = error.message || 'Rasm yuklab bo\'lmadi.';
+            } finally {
+              event.target.value = '';
+            }
+          },
+          async sendUpload(file) {
+            const payload = new FormData();
+            payload.append('file', file);
+            const response = await fetch('/api/upload', {
+              method: 'POST',
+              headers: { Authorization: `Bearer ${this.token}` },
+              body: payload,
+            });
+            const result = await response.json();
+            if (!response.ok) {
+              if (response.status === 401) { this.resetAuth(); throw new Error('Sessiya tugadi.'); }
+              throw new Error(result.error || 'Rasm yuklab bo\'lmadi.');
+            }
+            return result;
+          },
+          normalizePreview(value) {
+            if (!value) { return ''; }
+            if (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('/')) { return value; }
+            return `/${value}`;
+          },
+          clone(value) { return JSON.parse(JSON.stringify(value)); },
+          resetAuth() {
+            window.localStorage.removeItem('cmsToken');
+            window.localStorage.removeItem('cmsUserEmail');
+            window.location.replace('/admin/login');
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

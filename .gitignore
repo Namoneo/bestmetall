@@ -1,15 +1,33 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
 
-# Compiled output
+# Python / CMS runtime
+.venv/
+__pycache__/
+*.pyc
+database.db
+uploads/
+.env
+
+# Local verification scratch (screenshots + ad-hoc scripts)
+verify/
+scripts/verify-*.js
+scripts/shot-*.js
+
+# Pre-existing dev scratch
+screenshot-*.png
+compare-*.png
+screenshot-comparison.png
+inspect-*.json
+
+# Legacy Angular build output
 /dist
 /tmp
 /out-tsc
 /bazel-out
-
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+/.angular/cache
 
 # IDEs and editors
 .idea/
@@ -19,8 +37,6 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
-
-# Visual Studio Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -29,7 +45,6 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
@@ -38,10 +53,10 @@ testem.log
 /typings
 __screenshots__/
 
-# System files
-.DS_Store
-Thumbs.db
-
-# Firebase
+# Firebase (legacy)
 .firebase
 *.log
+
+# OS
+.DS_Store
+Thumbs.db
